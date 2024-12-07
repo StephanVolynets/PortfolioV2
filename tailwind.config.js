@@ -21,6 +21,12 @@ export default {
         secondary: '#61892F',
         accent: '#6B6E70',
         highlight: '#474B4F',
+        lime: {
+          300: '#bef264',
+          500: '#84cc16',
+          600: '#65a30d',
+          800: '#365314',
+        },
       },
     },
   },

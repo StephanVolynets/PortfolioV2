@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
-import { RoughNotation } from 'react-rough-notation';
+
 
 interface HeroProps {
   theme: string;
@@ -9,7 +9,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ theme }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [typedText, setTypedText] = useState('');
-  const fullText = "Computer Science & Data Science Student at Cornell University";
+  const fullText = "Computer & Data Science Student";
 
   useEffect(() => {
     let i = 0;
@@ -44,10 +44,9 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
       size: number;
       speedX: number;
       speedY: number;
-
       constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
+        this.x = Math.random() * (canvas?.width ?? 0);
+        this.y = Math.random() * (canvas?.height ?? 0);
         this.size = Math.random() * 5 + 1;
         this.speedX = Math.random() * 3 - 1.5;
         this.speedY = Math.random() * 3 - 1.5;
@@ -79,7 +78,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
     }
 
     function animateParticles() {
-      if (!ctx) return;
+      if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particles.length; i++) {
@@ -115,21 +114,21 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
       <canvas ref={canvasRef} className="particle-network"></canvas>
       <div className="max-w-4xl mx-auto z-10">
         <img
-          src="https://example.com/path-to-your-image.jpg"
+          src="https://media.licdn.com/dms/image/v2/C4D03AQH4UZKn7Ny3uQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1662479258603?e=1735171200&v=beta&t=3LrHtCCOQ3mwxBSj7-28eK-OcvYTqhlIxkmQ5NzL4Zk"
           alt="Stephan Volynets"
           className="w-48 h-48 rounded-full border-4 border-primary shadow-lg mb-8 mx-auto"
         />
-        <h1 className={`glitch text-6xl md:text-7xl font-bold mb-6 leading-tight ${theme === 'dark' ? 'text-gray-300' : 'text-gray-800'}`}>
-          Stephan Volynets
-        </h1>
-        <p className="typewriter terminal-prompt text-2xl md:text-3xl mb-16 max-w-3xl mx-auto text-accent">
+      <h1 className={`glitch flicker text-6xl md:text-7xl font-bold mb-6 leading-tight ${theme === 'dark' ? 'text-lime-300' : 'text-lime-800'}`}>
+        Stephan Volynets
+      </h1>
+        <p className="typewriter terminal-prompt text-2xl md:text-3xl mb-8 max-w-3xl mx-auto text-lime-500">
           {typedText}
         </p>
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
-          <a href="#about" className="bg-primary text-background hover:bg-secondary text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300">
+        <div className="flex flex-wrap justify-center gap-4 mt-16 mb-32">
+          <a href="#about" className="bg-lime-500 text-background hover:bg-lime-600 text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300">
             Discover My Journey
           </a>
-          <a href="#contact" className="bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-background text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300">
+          <a href="#contact" className="bg-transparent border-2 border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-background text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300">
             Let's Connect!
           </a>
         </div>
@@ -138,7 +137,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
           className="hover-effect animate-bounce inline-block"
           aria-label="Scroll to About section"
         >
-          <ArrowDown size={36} className="text-primary" />
+          <ArrowDown size={36} className="text-lime-500" />
         </a>
       </div>
     </section>

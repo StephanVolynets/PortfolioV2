@@ -92,7 +92,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
               <a href="https://github.com/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
                 <Github size={24} className="mr-2" /> GitHub
               </a>
-              <a href="mailto:sv468@cornell.edu" className="flex items-center text-text hover:text-primary transition-colors">
+              <a href="mailto:svv6@cornell.edu" className="flex items-center text-text hover:text-primary transition-colors">
                 <Mail size={24} className="mr-2" /> sv468@cornell.edu
               </a>
             </div>

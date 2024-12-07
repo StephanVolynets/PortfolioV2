@@ -7,7 +7,7 @@ interface SkillsProps {
 
 const skillsData = [
   { name: 'currentLocation', value: '"Ithaca, NY"' },
-  { name: 'contactInfo', value: '["sv468@cornell.edu", "LinkedIn", "GitHub"]' },
+  { name: 'contactInfo', value: '["svv6@cornell.edu", "LinkedIn", "GitHub"]' },
   { name: 'education', value: '"B.A. Computer Science - Cornell University"' },
   { name: 'skills', value: '["Python", "Java (OOP)", "React.js", "SQL", "MongoDB", "JavaScript", "Express.js", "Node.js", "CSS & SASS", "Data Structures & Algorithms"]' },
 ];
@@ -46,7 +46,7 @@ const Skills: React.FC<SkillsProps> = ({ theme }) => {
     <section id="skills" className="py-20 section-fade bg-background">
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold mb-12 text-center text-primary">
-          <RoughNotation type="underline" color={theme === 'dark' ? "#86C232" : "#4a9d4a"} show={true} strokeWidth={3}>
+          <RoughNotation type="underline" color={theme === 'dark' ? "#86C232" : "#4a9d4a"} show={true} strokeWidth={3} animationDuration={2000}>
             My Toolkit
           </RoughNotation>
         </h2>
