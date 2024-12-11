@@ -2,6 +2,18 @@
 
 Welcome to my personal portfolio! Built from scratch this project showcases my skills, education, and experience in the field of computer science and software development. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
 
+<p>
+   <img src="https://github.com/user-attachments/assets/eca1aa74-527a-4bf0-b5d9-292d75508a26" alt="Desktop Browser" style="width:100% height="700">
+        <br>
+
+</p>
+
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/22779997-0986-40cf-b5fd-f65d775bf0ac" alt="Desktop Browser"  width="300">
+     
+ </p>
+
+
 ## Table of Contents
 
 - [Personal Portfolio](#personal-portfolio)
