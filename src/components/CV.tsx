@@ -26,7 +26,7 @@ const CV: React.FC<CVProps> = ({ theme }) => {
               <span className="font-bold text-lime-600">Programming Languages:</span> Python (Advanced), SQL (Advanced), Java (Intermediate), JavaScript/TSX (Intermediate), Golang (Beginner), PHP (Beginner)<br />
               <span className="font-bold text-lime-600">Databases:</span> SQL (PostgreSQL/SQLite), NoSQL (MongoDB), Supabase<br />
               <span className="font-bold text-lime-600">Web Development:</span> React.js, Next.js, Node.js, Express.js, RESTful API Design, Nest.js, TypeScript, MaterialUI<br />
-              <span className="font-bold text-lime-600">Hosting & Tools:</span> GoDaddy (DNS), DigitalOcean (Backend Hosting), Vercel (Frontend Hosting), GitHub (Code), PostHog (User KPIs)
+              <span className="font-bold text-lime-600">Hosting & Tools:</span> Supabase, DigitalOcean (Backend Hosting), Vercel (Frontend Hosting), GitHub (Code), PostHog (User KPIs)
             </p>
           </div>
           <div>
@@ -34,14 +34,13 @@ const CV: React.FC<CVProps> = ({ theme }) => {
             <p className="mb-4">
               <span className="font-bold text-lime-600">Consulting Team | Cornell Blockchain | Ithaca, NY</span> Oct 2023 - Present<br />
               ● Conducted in-depth research and testing of subnets for companies exploring tokenization of business sectors, providing valuable insights and recommendations. Improved test times across 3 teams by nearly 400% with enhanced stability.<br />
-              ● Developed and delivered a web app using Next.js and Node.js in an Agile environment for Stellar Blockchain, designed for 5M+ users to discover and select Anchors based on fees, location, speed, and availability.<br />
               ● Delivered DormDAO venture capital pitches, contributing to successful funding rounds and advancements for blockchain apps.
             </p>
             <p className="mb-4">
               <span className="font-bold text-lime-600">Cita Marketplace | Software Engineer Intern | New York, United States | Hybrid</span> Mar 2023 - July 2023<br />
-              ● Developed and optimized a dynamic online marketplace connecting buyers and sellers, enhancing front-end responsiveness, back-end stability, and API robustness with Node.js and Express.<br />
+              ● Developed and optimized a dynamic online marketplace connecting buyers and sellers, enhancing front end responsiveness, back-end stability, and API robustness with Node.js and Express.<br />
               ● Leveraged data analysis on user engagement and transaction metrics to identify performance bottlenecks, guiding strategic improvements in scalability and reliability.<br />
-              ● Implemented server-side caching, asynchronous data fetching, and efficient database indexing including block nested loop joins and external sorting to reduce query times by up to 30% through optimized data retrieval and processing.<br />
+              ● Implemented server side caching, asynchronous data fetching, and efficient database indexing including block nested loop joins and external sorting to reduce query times by up to 30% through optimized data retrieval and processing.<br />
               ● Collaborated in agile workflows and conducted rigorous code reviews to successfully deliver secure payment gateways and refined checkout workflows, strengthening transaction security and trust.
             </p>
           </div>
