@@ -81,7 +81,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
                 type="highlight"
                 color={highlightColor}
                 animationDelay={1800}
-                animationDuration={2000}
+                animationDuration={500}
                 strokeWidth={3}
               >
                 PHP
@@ -91,7 +91,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
                 type="highlight"
                 color={highlightColor}
                 animationDelay={2100}
-                animationDuration={2000}
+                animationDuration={500}
                 strokeWidth={3}
               >
                 React.js
@@ -101,7 +101,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
                 type="highlight"
                 color={highlightColor}
                 animationDelay={2400}
-                animationDuration={2000}
+                animationDuration={500}
                 strokeWidth={3}
               >
                 TypeScript
@@ -151,20 +151,20 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               to technology is matched by a commitment to advancing understanding
               within{" "}
               <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={3900}
-                animationDuration={2000}
+                type="highlight"
+                color={highlightColor}
+                animationDelay={2100}
+                animationDuration={500}
                 strokeWidth={3}
               >
                 blockchain
               </RoughNotation>
               ,{" "}
               <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={4200}
-                animationDuration={2000}
+                type="highlight"
+                color={highlightColor}
+                animationDelay={2100}
+                animationDuration={500}
                 strokeWidth={3}
               >
                 fintech
