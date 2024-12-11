@@ -14,23 +14,29 @@ const skillsData = [
 
 const Skills: React.FC<SkillsProps> = ({ theme }) => {
   return (
-    <section id="skills" className={`py-20 section-fade ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-12 text-center text-primary">
-          <RoughNotation type="underline" color={theme === 'dark' ? "#86C232" : "#4a9d4a"} show={true} strokeWidth={3} animationDuration={2000}>
+    <section id="skills" className={`py-24 section-fade ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
+      <div className="container mx-auto px-6">
+        <h2 className="text-5xl font-bold mb-16 text-center text-primary">
+          <RoughNotation 
+            type="underline" 
+            color={theme === 'dark' ? "#86C232" : "#4a9d4a"} 
+            show={true} 
+            strokeWidth={3} 
+            animationDuration={2000}
+          >
             My Toolkit
           </RoughNotation>
         </h2>
-        <div className="bg-highlight p-6 rounded-lg shadow-md font-mono text-sm md:text-base">
-          <div className="flex items-center mb-4">
-            <div className="w-3 h-3 rounded-full bg-red-500 mr-2"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500 mr-2"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
+        <div className="bg-highlight p-8 rounded-lg shadow-md font-mono text-lg md:text-xl">
+          <div className="flex items-center mb-6">
+            <div className="w-4 h-4 rounded-full bg-red-500 mr-3"></div>
+            <div className="w-4 h-4 rounded-full bg-yellow-500 mr-3"></div>
+            <div className="w-4 h-4 rounded-full bg-green-500"></div>
           </div>
-          <div className="text-text whitespace-pre-line">
+          <div className="text-text whitespace-pre-line leading-relaxed">
             {skillsData.map((skill, index) => (
-              <div key={index}>
-                <span className="text-primary">&gt;&gt;&gt; Stephan.{skill.name}</span>
+              <div key={index} className="mb-6 last:mb-0">
+                <span className="text-primary font-semibold">&gt;&gt;&gt; Stephan.{skill.name}</span>
                 {"\n" + skill.value}
               </div>
             ))}
