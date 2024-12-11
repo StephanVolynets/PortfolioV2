@@ -1,6 +1,7 @@
 # Personal Portfolio
+##### Deploy Status: [![Netlify Status](https://api.netlify.com/api/v1/badges/73d5f701-8479-41d2-90a2-78a5976fbf38/deploy-status)](https://app.netlify.com/sites/stephan-volynets/deploys)
 
-Welcome to my personal portfolio! Built from scratch this project showcases my skills, education, and experience in the field of computer science and software development. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
+### Welcome to my personal portfolio! Built from scratch and meant to showcases my skills, education, and experience in the field of computer science and beyond. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
 
 <p>
    <img src="https://github.com/user-attachments/assets/eca1aa74-527a-4bf0-b5d9-292d75508a26" alt="Desktop Browser" style="width:100% height="700">
