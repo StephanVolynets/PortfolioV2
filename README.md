@@ -1,6 +1,6 @@
 # Personal Portfolio
 
-Welcome to my personal portfolio! This project showcases my skills, education, and experience in the field of computer science and software development. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
+Welcome to my personal portfolio! Built from scratch this project showcases my skills, education, and experience in the field of computer science and software development. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
 
 ## Table of Contents
 
