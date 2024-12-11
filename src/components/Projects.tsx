@@ -16,17 +16,17 @@ const projects = [
   },
   {
     title: 'Cornell Boxing Club - Event RSVP App',
-    description: 'Dynamic content management app that features both a public facing interface for users and a comprehensive admin panel for content management. authentication. For movie enthusiasts to explore top-ranked films across various genres. The system ',
+    description: 'a modern, responsive React application to manage event RSVPs with real time updates, a dynamic grid layout, smooth animations, and mobile friendly design. Seamless RSVP functionality is supported by a modular component architecture and efficient API communication.',
     github: 'https://github.com',
     live: 'https://example.com',
-    tags: ['PHP', 'Secure Authentication', 'SQLlite']
-  },
+    tags: ['MongoDB', 'Express.js', 'Restful Architecture']
+  },	
   {
     title: 'Cinematic Showcase - Movie Database',
-    description: 'A comprehensive web application for managing and showcasing top-rated films, featuring both user and administrative interfaces.',
+    description: 'Dynamic content management app that features both a public facing interface for users to explore top ranked films across various genres. As well as a comprehensive admin panel for content management, secure by user authentication.',
     github: 'https://github.com',
     live: 'https://example.com',
-    tags: ['React', 'Express.js', 'MongoDB']
+    tags: ['PHP', 'SQLlite', 'Session Management']
   }, 
   {
     title: 'Graphical Image Editing Application',
