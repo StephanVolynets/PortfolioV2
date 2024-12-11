@@ -9,7 +9,7 @@ const CV: React.FC<CVProps> = ({ theme }) => {
   return (
     <section id="cv" className={`py-20 ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-12 text-center text-primary">
+        <h2 className="text-5xl font-bold mb-12 text-center text-primary">
           <RoughNotation type="underline" color={theme === 'dark' ? "#86C232" : "#4a9d4a"} show={true} strokeWidth={3} animationDuration={2000}>
             My CV
           </RoughNotation>
