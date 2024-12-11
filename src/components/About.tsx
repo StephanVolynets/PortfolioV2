@@ -57,10 +57,10 @@ const About: React.FC<AboutProps> = ({ theme }) => {
             <p className="text-xl mb-8 leading-relaxed">
               As a senior at{" "}
               <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={300}
-                animationDuration={2000}
+                type="highlight"
+                color={highlightColor}
+                animationDelay={800}
+                animationDuration={500}
                 strokeWidth={3}
               >
                 Cornell University
@@ -69,18 +69,30 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               <RoughNotation
                 type="underline"
                 color={underlineColor}
-                animationDelay={600}
+                animationDelay={300}
                 animationDuration={2000}
                 strokeWidth={3}
+                // optional inline-block
+                style={{ display: 'inline-block' }}
               >
-                Computer and Information Sciences
+                Computer
+              </RoughNotation>{" "}
+              and 
+              <RoughNotation
+                type="underline"
+                color={underlineColor}
+                animationDelay={300}
+                animationDuration={2000}
+                strokeWidth={3}
+                style={{ display: 'inline-block' }}
+              >
+                 Information Sciences
               </RoughNotation>
-              , I specialize in blockchain technologies, front-end development, and data-driven solutions. My academic and professional experiences have allowed me to
-              apply my expertise in{" "}
+              , I specialize in blockchain technologies, development, and data driven solutions. My academic and professional experiences have allowed me to apply my expertise in{" "}
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
-                animationDelay={1800}
+                animationDelay={800}
                 animationDuration={500}
                 strokeWidth={3}
               >
@@ -90,7 +102,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
-                animationDelay={2100}
+                animationDelay={900}
                 animationDuration={500}
                 strokeWidth={3}
               >
@@ -100,22 +112,20 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
-                animationDelay={2400}
+                animationDelay={1000}
                 animationDuration={500}
                 strokeWidth={3}
               >
                 TypeScript
               </RoughNotation>
-              , and collaborative software development to create impactful,
-              user-centric applications.
+              , and collaborative software development to create impactful, user centric applications.
             </p>
             <p className="text-xl mb-8 leading-relaxed">
-              I have actively contributed to the blockchain ecosystem through my
-              role in{" "}
+              I have actively contributed to the blockchain ecosystem through my role in{" "}
               <RoughNotation
                 type="underline"
                 color={underlineColor}
-                animationDelay={2700}
+                animationDelay={1100}
                 animationDuration={2000}
                 strokeWidth={3}
               >
@@ -125,35 +135,30 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               <RoughNotation
                 type="underline"
                 color={underlineColor}
-                animationDelay={3000}
-                animationDuration={2000}
+                animationDelay={1100}
+                animationDuration={1900}
                 strokeWidth={3}
               >
                 Silicore.io
               </RoughNotation>
-              , which was showcased at prestigious events like the Meridian
-              Conference. These experiences have honed my ability to translate complex
-              technical concepts into real-world applications that empower users.
+              , which was showcased at prestigious events like the Meridian Conference. These experiences have honed my ability to translate complex technical concepts into real world applications that empower users.
             </p>
             <p className="text-xl leading-relaxed">
               Fluent in{" "}
               <RoughNotation
                 type="underline"
                 color={underlineColor}
-                animationDelay={3600}
+                animationDelay={1500}
                 animationDuration={2000}
                 strokeWidth={3}
               >
                 English and Russian
               </RoughNotation>
-              , I bring a global perspective to problem-solving, ensuring
-              inclusivity and impact in every project I undertake. My dedication
-              to technology is matched by a commitment to advancing understanding
-              within{" "}
+              , I bring a global perspective to problem solving, ensuring inclusivity and impact in every project I undertake. My dedication to technology is matched by a commitment to advancing understanding within{" "}
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
-                animationDelay={2100}
+                animationDelay={1700}
                 animationDuration={500}
                 strokeWidth={3}
               >
@@ -163,7 +168,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
-                animationDelay={2100}
+                animationDelay={1800}
                 animationDuration={500}
                 strokeWidth={3}
               >
