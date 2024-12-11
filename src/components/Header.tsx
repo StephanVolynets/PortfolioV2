@@ -36,8 +36,8 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   const navItems = [
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
     { id: 'cv', label: 'CV' }, // Keep the ID lowercase
+    { id: 'projects', label: 'Projects' },
     { id: 'contact', label: 'Contact' },
   ];
 
