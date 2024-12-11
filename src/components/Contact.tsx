@@ -27,7 +27,7 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
   return (
     <section id="contact" className="py-20 section-fade bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold mb-8 text-center text-primary">
+        <h2 className="text-5xl font-bold mb-8 text-center text-primary">
           <RoughNotation type="underline" color="#86C232" show={true} strokeWidth={3}>
             Let's Connect!
           </RoughNotation>
