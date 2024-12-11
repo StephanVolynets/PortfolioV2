@@ -87,13 +87,13 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
             <h3 className="text-2xl font-semibold mb-4 text-primary">Connect with me</h3>
             <div className="space-y-4">
               <a href="https://linkedin.com/in/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
-                <Linkedin size={24} className="mr-2" /> LinkedIn
+                <Linkedin size={24} className="mr-2" /> LinkedIn.com/in/stephan-volynets
               </a>
               <a href="https://github.com/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
-                <Github size={24} className="mr-2" /> GitHub
+                <Github size={24} className="mr-2" /> GitHub.com/stephanvolynets
               </a>
               <a href="mailto:svv6@cornell.edu" className="flex items-center text-text hover:text-primary transition-colors">
-                <Mail size={24} className="mr-2" /> sv468@cornell.edu
+                <Mail size={24} className="mr-2" /> svv6@cornell.edu
               </a>
             </div>
           </div>
