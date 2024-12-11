@@ -33,6 +33,8 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     window.location.reload();
   };
 
+  const navItems = ['about', 'skills', 'projects', 'CV', 'contact'];
+
   return (
     <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? (theme === 'dark' ? 'bg-background' : 'bg-gray-100') : 'bg-transparent'} ${theme === 'dark' ? 'text-text' : 'text-gray-900'}`}>
       <div className="container mx-auto px-6 py-6 flex justify-between items-center">
@@ -43,7 +45,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           SV
         </button>
         <nav className="hidden md:flex space-x-8 items-center">
-          {['about', 'skills', 'projects', 'contact'].map((item) => (
+          {navItems.map((item) => (
             <button
               key={item}
               onClick={() => scrollTo(item)}
@@ -59,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
       </div>
       {isMenuOpen && (
         <nav className={`md:hidden py-6 ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
-          {['about', 'skills', 'projects', 'contact'].map((item) => (
+          {navItems.map((item) => (
             <button
               key={item}
               onClick={() => scrollTo(item)}
