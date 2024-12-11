@@ -15,7 +15,6 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -28,10 +27,20 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     setIsMenuOpen(false);
   };
 
+  const handleHomeClick = () => {
+    // Reload the current page
+    window.location.reload();
+  };
+
   return (
     <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? (theme === 'dark' ? 'bg-background' : 'bg-gray-100') : 'bg-transparent'} ${theme === 'dark' ? 'text-text' : 'text-gray-900'}`}>
       <div className="container mx-auto px-6 py-6 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-primary">SV</h1>
+        <button 
+          onClick={handleHomeClick}
+          className="text-3xl font-bold text-primary focus:outline-none hover:opacity-80"
+        >
+          SV
+        </button>
         <nav className="hidden md:flex space-x-8 items-center">
           {['about', 'skills', 'projects', 'contact'].map((item) => (
             <button
