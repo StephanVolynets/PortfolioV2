@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import CV from './CV';
 
 interface HeaderProps {
   theme: string;
@@ -33,7 +32,14 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
     window.location.reload();
   };
 
-  const navItems = ['about', 'skills', 'projects', 'CV', 'contact'];
+  // Update navItems to include "CV" for display
+  const navItems = [
+    { id: 'about', label: 'About' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'projects', label: 'Projects' },
+    { id: 'cv', label: 'CV' }, // Keep the ID lowercase
+    { id: 'contact', label: 'Contact' },
+  ];
 
   return (
     <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? (theme === 'dark' ? 'bg-background' : 'bg-gray-100') : 'bg-transparent'} ${theme === 'dark' ? 'text-text' : 'text-gray-900'}`}>
@@ -45,13 +51,13 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           SV
         </button>
         <nav className="hidden md:flex space-x-8 items-center">
-          {navItems.map((item) => (
+          {navItems.map(({ id, label }) => (
             <button
-              key={item}
-              onClick={() => scrollTo(item)}
+              key={id}
+              onClick={() => scrollTo(id)} // Use the lowercase ID for scrolling
               className={`nav-link text-lg font-semibold hover:text-primary capitalize ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
             >
-              {item}
+              {label} {/* Display the label, which can be "CV" */}
             </button>
           ))}
         </nav>
@@ -61,13 +67,13 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
       </div>
       {isMenuOpen && (
         <nav className={`md:hidden py-6 ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
-          {navItems.map((item) => (
+          {navItems.map(({ id, label }) => (
             <button
-              key={item}
-              onClick={() => scrollTo(item)}
+              key={id}
+              onClick={() => scrollTo(id)} // Use the lowercase ID for scrolling
               className={`block w-full py-3 px-6 text-left text-lg font-semibold hover:bg-gray-700 dark:hover:bg-gray-600 capitalize ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
             >
-              {item}
+              {label} {/* Display the label, which can be "CV" */}
             </button>
           ))}
         </nav>
