@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { RoughNotation } from 'react-rough-notation';
 
 interface SkillsProps {
@@ -13,35 +13,6 @@ const skillsData = [
 ];
 
 const Skills: React.FC<SkillsProps> = ({ theme }) => {
-  const [currentSkillIndex, setCurrentSkillIndex] = useState(0);
-  const [currentText, setCurrentText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
-
-  useEffect(() => {
-    if (currentSkillIndex < skillsData.length) {
-      const timer = setTimeout(() => {
-        if (currentText.length < skillsData[currentSkillIndex].name.length) {
-          setCurrentText(prev => prev + skillsData[currentSkillIndex].name[currentText.length]);
-        } else if (currentText.length === skillsData[currentSkillIndex].name.length) {
-          setCurrentText(prev => prev + '\n' + skillsData[currentSkillIndex].value);
-        } else {
-          setTimeout(() => {
-            setCurrentSkillIndex(prev => prev + 1);
-            setCurrentText('');
-          }, 1000);
-        }
-      }, 50);
-      return () => clearTimeout(timer);
-    }
-  }, [currentSkillIndex, currentText]);
-
-  useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
-    return () => clearInterval(cursorInterval);
-  }, []);
-
   return (
     <section id="skills" className={`py-20 section-fade ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
       <div className="container mx-auto px-4">
@@ -58,10 +29,9 @@ const Skills: React.FC<SkillsProps> = ({ theme }) => {
           </div>
           <div className="text-text whitespace-pre-line">
             {skillsData.map((skill, index) => (
-              <div key={index} className={index <= currentSkillIndex ? '' : 'hidden'}>
+              <div key={index}>
                 <span className="text-primary">&gt;&gt;&gt; Stephan.{skill.name}</span>
-                {index === currentSkillIndex ? currentText : `\n${skill.value}`}
-                {index === currentSkillIndex && showCursor && <span className="animate-pulse">|</span>}
+                {"\n" + skill.value}
               </div>
             ))}
           </div>
