@@ -15,6 +15,19 @@ function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
+    // Add favicon to the document head
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.href = '/favicon.ico';
+    document.head.appendChild(favicon);
+    
+    // Cleanup function to remove the favicon when the component unmounts
+    return () => {
+      document.head.removeChild(favicon);
+    };
+  }, []);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
