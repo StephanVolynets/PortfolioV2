@@ -10,7 +10,7 @@ const projects = [
   {
     title: 'Silicore.io',
     description: 'Developed as part of the "Build Better on Stellar: Smart Contract Challenge," Silicore is a platform that enables cryptocurrency traders to compare trusted exchanges, secure optimal rates, and trade efficiently. It provides real time data and insights, allowing users to make informed decisions by comparing various exchanges and their rates." 
-',
+,
     github: 'https://github.com',
     live: 'https://example.com',
     tags: ['React', 'Nest.js', 'Typescript']
