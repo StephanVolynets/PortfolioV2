@@ -24,7 +24,7 @@ const projects = [
   },	
   {
     title: 'Cinematic Showcase - Movie Database',
-    description: 'Dynamic content management app that features both a public facing interface for users to explore top ranked films across various genres. As well as a comprehensive admin panel for content management, secure by user authentication.',
+    description: 'Dynamic content management app that features both a public facing interface for users to explore top ranked films across various genres, as well as a comprehensive admin panel for content management, secure by user authentication.',
     github: 'https://github.com',
     live: 'https://example.com',
     tags: ['PHP', 'SQLlite', 'Session Management']
