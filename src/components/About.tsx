@@ -31,13 +31,20 @@ const About: React.FC<AboutProps> = ({ theme }) => {
     };
   }, []);
 
+  const underlineColor = theme === "dark" ? "#86C232" : "#4a9d4a";
+  const highlightColor = theme === "dark" ? "rgba(134, 194, 50, 0.2)" : "rgba(74, 157, 74, 0.2)";
+
   return (
-    <section id="about" ref={sectionRef} className={`py-24 fade-in ${theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'}`}>
+    <section
+      id="about"
+      ref={sectionRef}
+      className={`py-24 fade-in ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}
+    >
       <div className="container mx-auto px-6">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">
           <RoughNotation
             type="underline"
-            color={theme === "dark" ? "#86C232" : "#4a9d4a"}
+            color={underlineColor}
             show={true}
             strokeWidth={3}
             animationDuration={2000}
@@ -48,86 +55,121 @@ const About: React.FC<AboutProps> = ({ theme }) => {
         <div className="max-w-4xl mx-auto">
           <RoughNotationGroup show={true}>
             <p className="text-xl mb-8 leading-relaxed">
-              As a{" "}
+              As a senior at{" "}
               <RoughNotation
-                type="highlight"
-                color={
-                  theme === "dark"
-                    ? "rgba(134, 194, 50, 0.2)"
-                    : "rgba(74, 157, 74, 0.2)"
-                }
+                type="underline"
+                color={underlineColor}
                 animationDelay={300}
                 animationDuration={2000}
                 strokeWidth={3}
               >
-                Bachelor of Arts candidate
+                Cornell University
               </RoughNotation>{" "}
-              at Cornell University specializing in Computer and Information
-              Sciences, I'm currently applying my expertise in{" "}
+              pursuing a Bachelor of Arts in{" "}
               <RoughNotation
-                type="highlight"
-                color={
-                  theme === "dark"
-                    ? "rgba(134, 194, 50, 0.2)"
-                    : "rgba(74, 157, 74, 0.2)"
-                }
+                type="underline"
+                color={underlineColor}
                 animationDelay={600}
                 animationDuration={2000}
                 strokeWidth={3}
               >
-                Python and front-end development
-              </RoughNotation>{" "}
-              at the Cornell Blockchain consulting team. My academic journey has
-              been complemented by practical experience, where I've honed my
-              skills in{" "}
+                Computer and Information Sciences
+              </RoughNotation>
+              , I specialize in blockchain technologies, front-end development, and data-driven solutions. My academic and professional experiences have allowed me to
+              apply my expertise in{" "}
               <RoughNotation
                 type="highlight"
-                color={
-                  theme === "dark"
-                    ? "rgba(134, 194, 50, 0.2)"
-                    : "rgba(74, 157, 74, 0.2)"
-                }
-                animationDelay={900}
+                color={highlightColor}
+                animationDelay={1800}
                 animationDuration={2000}
                 strokeWidth={3}
               >
-                React.js and collaborative software development
+                PHP
               </RoughNotation>
-              .
+              ,{" "}
+              <RoughNotation
+                type="highlight"
+                color={highlightColor}
+                animationDelay={2100}
+                animationDuration={2000}
+                strokeWidth={3}
+              >
+                React.js
+              </RoughNotation>
+              ,{" "}
+              <RoughNotation
+                type="highlight"
+                color={highlightColor}
+                animationDelay={2400}
+                animationDuration={2000}
+                strokeWidth={3}
+              >
+                TypeScript
+              </RoughNotation>
+              , and collaborative software development to create impactful,
+              user-centric applications.
             </p>
             <p className="text-xl mb-8 leading-relaxed">
-              At Cornell Blockchain, our team strives to{" "}
+              I have actively contributed to the blockchain ecosystem through my
+              role in{" "}
               <RoughNotation
-                type="highlight"
-                color={
-                  theme === "dark"
-                    ? "rgba(134, 194, 50, 0.2)"
-                    : "rgba(74, 157, 74, 0.2)"
-                }
-                animationDelay={1200}
+                type="underline"
+                color={underlineColor}
+                animationDelay={2700}
                 animationDuration={2000}
                 strokeWidth={3}
               >
-                innovate within the blockchain ecosystem
+                Cornell Blockchain
               </RoughNotation>
-              , translating academic excellence into real-world applications. My
-              dedication to the field is matched by a commitment to foster
-              technology that empowers and advances our collective
-              understanding.
+              , where I collaborate on innovative projects such as{" "}
+              <RoughNotation
+                type="underline"
+                color={underlineColor}
+                animationDelay={3000}
+                animationDuration={2000}
+                strokeWidth={3}
+              >
+                Silicore.io
+              </RoughNotation>
+              , which was showcased at prestigious events like the Meridian
+              Conference. These experiences have honed my ability to translate complex
+              technical concepts into real-world applications that empower users.
             </p>
             <p className="text-xl leading-relaxed">
               Fluent in{" "}
               <RoughNotation
                 type="underline"
-                color={theme === "dark" ? "#86C232" : "#4a9d4a"}
-                animationDelay={1500}
+                color={underlineColor}
+                animationDelay={3600}
                 animationDuration={2000}
                 strokeWidth={3}
               >
                 English and Russian
               </RoughNotation>
-              , I bring a global perspective to our endeavors, ensuring our
-              solutions are inclusive and impactful.
+              , I bring a global perspective to problem-solving, ensuring
+              inclusivity and impact in every project I undertake. My dedication
+              to technology is matched by a commitment to advancing understanding
+              within{" "}
+              <RoughNotation
+                type="underline"
+                color={underlineColor}
+                animationDelay={3900}
+                animationDuration={2000}
+                strokeWidth={3}
+              >
+                blockchain
+              </RoughNotation>
+              ,{" "}
+              <RoughNotation
+                type="underline"
+                color={underlineColor}
+                animationDelay={4200}
+                animationDuration={2000}
+                strokeWidth={3}
+              >
+                fintech
+              </RoughNotation>
+              , and beyond.
             </p>
           </RoughNotationGroup>
         </div>
