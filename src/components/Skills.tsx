@@ -27,7 +27,7 @@ const Skills: React.FC<SkillsProps> = ({ theme }) => {
             My Toolkit
           </RoughNotation>
         </h2>
-        <div className="bg-highlight p-8 rounded-lg shadow-md font-mono text-lg md:text-xl">
+        <div className="bg-highlight p-8 rounded-lg shadow-md font-mono text-md md:text-lg">
           <div className="flex items-center mb-6">
             <div className="w-4 h-4 rounded-full bg-red-500 mr-3"></div>
             <div className="w-4 h-4 rounded-full bg-yellow-500 mr-3"></div>
