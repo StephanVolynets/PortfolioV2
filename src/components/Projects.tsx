@@ -35,7 +35,6 @@ const projects = [
     live: 'https://example.com',
     tags: ['Java', 'Data Structures', 'GUI']
   }
-  // Add more projects as needed
 ];
 
 const Projects: React.FC<ProjectsProps> = ({ theme }) => {
@@ -53,9 +52,15 @@ const Projects: React.FC<ProjectsProps> = ({ theme }) => {
           {projects.map((project, index) => (
             <div 
               key={index} 
-              className="border border-accent p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+              className="relative border border-accent p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
+              onClick={() => {
+                if (project.title === 'Silicore.io') {
+                  window.open('https://www.silicore.io', '_blank');
+                }
+              }}
+              style={project.title === 'Silicore.io' ? { cursor: 'pointer' } : {}}
             >
               <h3 className="text-2xl font-semibold mb-4 text-primary">{project.title}</h3>
               <p className="text-text mb-6">{project.description}</p>
