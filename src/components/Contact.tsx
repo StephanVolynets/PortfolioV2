@@ -87,7 +87,7 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
             <h3 className="text-2xl font-semibold mb-4 text-primary">Connect with me</h3>
             <div className="space-y-4">
               <a href="https://linkedin.com/in/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
-                <Linkedin size={24} className="mr-2" /> LinkedIn.com/in/stephan-volynets
+                <Linkedin size={24} className="mr-2" /> linkedin.com/in/stephan-volynets/
               </a>
               <a href="https://github.com/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
                 <Github size={24} className="mr-2" /> GitHub.com/stephanvolynets
