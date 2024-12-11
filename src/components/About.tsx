@@ -32,7 +32,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="py-24 fade-in bg-highlight">
+    <section id="about" ref={sectionRef} className={`py-24 fade-in ${theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'}`}>
       <div className="container mx-auto px-6">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">
           <RoughNotation

@@ -8,19 +8,33 @@ interface ProjectsProps {
 
 const projects = [
   {
-    title: 'Cornell Blockchain Project',
-    description: 'Innovative blockchain solution developed as part of the Cornell Blockchain consulting team.',
+    title: 'Silicore.io',
+    description: 'Innovative Crypto Off Ramping Discovery Platform Solution backed by Stellar Network',
     github: 'https://github.com',
     live: 'https://example.com',
-    tags: ['Blockchain', 'React', 'Solidity']
+    tags: ['React', 'Nest.js', 'Typescript']
   },
   {
-    title: 'Data Science Research',
-    description: 'Academic research project focusing on machine learning applications in data science.',
+    title: 'Cornell Boxing Club - Event RSVP App',
+    description: 'Dynamic content management app that features both a public facing interface for users and a comprehensive admin panel for content management. authentication. For movie enthusiasts to explore top-ranked films across various genres. The system ',
     github: 'https://github.com',
     live: 'https://example.com',
-    tags: ['Machine Learning', 'Python', 'Data Analysis']
+    tags: ['PHP', 'Secure Authentication', 'SQLlite']
   },
+  {
+    title: 'Cinematic Showcase - Movie Database',
+    description: 'A comprehensive web application for managing and showcasing top-rated films, featuring both user and administrative interfaces.',
+    github: 'https://github.com',
+    live: 'https://example.com',
+    tags: ['React', 'Express.js', 'MongoDB']
+  }, 
+  {
+    title: 'Graphical Image Editing Application',
+    description: 'The application allows users to interactively select areas in an image by combining manual point to point selection with automated edge following based on graph theory and shortest path algorithms.',
+    github: 'https://github.com',
+    live: 'https://example.com',
+    tags: ['Java', 'Data Structures', 'GUI']
+  }
   // Add more projects as needed
 ];
 
@@ -28,7 +42,7 @@ const Projects: React.FC<ProjectsProps> = ({ theme }) => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   return (
-    <section id="projects" className="py-20 section-fade bg-highlight">
+    <section id="projects" className={`py-20 section-fade ${theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold mb-12 text-center text-primary">
           <RoughNotation type="underline" color="#86C232" show={true} strokeWidth={3}>

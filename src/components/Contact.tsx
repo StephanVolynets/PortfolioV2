@@ -6,14 +6,14 @@ interface ContactProps {
   theme: string;
 }
 
-const Contact: React.FC<ContactProps> = ({ theme }) => {
+const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
   const [formState, setFormState] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate form submission
+    // Simulate form submission, implement later on. 
     await new Promise(resolve => setTimeout(resolve, 2000));
     console.log('Form submitted:', formState);
     setIsSubmitting(false);

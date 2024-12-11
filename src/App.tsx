@@ -8,6 +8,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import { ArrowUp } from 'lucide-react';
+import CV from './components/CV';
 
 function App() {
   const [theme, setTheme] = useState('dark');
@@ -62,6 +63,7 @@ function App() {
         <Hero theme={theme} />
         <About theme={theme} />
         <Skills theme={theme} />
+        <CV theme={theme} />
         <Projects theme={theme} />
         <Contact theme={theme} />
       </main>

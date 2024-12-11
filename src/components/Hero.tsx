@@ -56,7 +56,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
         this.x += this.speedX;
         this.y += this.speedY;
 
-        if (this.size > 0.2) this.size -= 0.1;
+        if (this.size > 0.1) this.size -= 0.02;
       }
 
       draw() {
@@ -85,7 +85,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
         particles[i].update();
         particles[i].draw();
 
-        if (particles[i].size <= 0.2) {
+        if (particles[i].size <= 0.1) {
           particles.splice(i, 1);
           i--;
         }
@@ -111,6 +111,20 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
 
   return (
     <section className={`min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
+      <style >{`
+        @keyframes flicker {
+          0%, 18%, 22%, 25%, 53%, 57%, 100% {
+            opacity: 1;
+          }
+          20%, 24%, 55% {
+            opacity: 0.4;
+          }
+        }
+
+        .flicker {
+          animation: flicker 0.75s infinite alternate;
+        }
+      `}</style>
       <canvas ref={canvasRef} className="particle-network"></canvas>
       <div className="max-w-4xl mx-auto z-10">
         <img

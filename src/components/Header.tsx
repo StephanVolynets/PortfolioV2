@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import CV from './CV';
 
 interface HeaderProps {
   theme: string;
@@ -41,13 +42,6 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               {item}
             </button>
           ))}
-          <button 
-            onClick={toggleTheme} 
-            className="theme-switch"
-            aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-          >
-            <span className="sr-only">{theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}</span>
-          </button>
         </nav>
         <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
@@ -64,12 +58,6 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               {item}
             </button>
           ))}
-          <button 
-            onClick={toggleTheme} 
-            className={`block w-full py-3 px-6 text-left text-lg font-semibold ${theme === 'dark' ? 'text-yellow-300 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-200'}`}
-          >
-            {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-          </button>
         </nav>
       )}
     </header>
