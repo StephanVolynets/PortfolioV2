@@ -28,7 +28,8 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
   };
 
   const handleHomeClick = () => {
-    // Reload the current page
+    // Reload the page and scroll to top
+    window.scrollTo(0, 0);
     window.location.reload();
   };
 
