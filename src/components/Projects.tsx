@@ -16,7 +16,7 @@ const projects = [
   },
   {
     title: 'Cornell Boxing Club - Event RSVP App',
-    description: 'a modern, responsive React application to manage event RSVPs with real time updates, a dynamic grid layout, smooth animations, and mobile friendly design. Seamless RSVP functionality is supported by a modular component architecture and efficient API communication.',
+    description: 'A modern, responsive React application to manage event RSVPs with real time updates, a dynamic grid layout, smooth animations, and mobile friendly design. Seamless RSVP functionality is supported by a modular component architecture and efficient API communication.',
     github: 'https://github.com',
     live: 'https://example.com',
     tags: ['MongoDB', 'Express.js', 'Restful Architecture']
