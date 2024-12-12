@@ -6,22 +6,49 @@ interface ContactProps {
   theme: string;
 }
 
-const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
+const Contact: React.FC<ContactProps> = () => {
+  const [formState, setFormState] = useState({ 
+    name: '', 
+    email: '', 
+    message: '' 
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simulate form submission, implement later on. 
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    console.log('Form submitted:', formState);
-    setIsSubmitting(false);
-    setFormState({ name: '', email: '', message: '' });
-  };
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    setFormState({ 
+      ...formState, 
+      [e.target.name]: e.target.value 
+    });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://formspree.io/f/xovqzrvy', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(formState)
+      });
+
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormState({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -33,7 +60,11 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
           </RoughNotation>
         </h2>
         <div className="flex flex-col md:flex-row justify-between items-start max-w-4xl mx-auto">
-          <form className="w-full md:w-1/2 mb-8 md:mb-0" onSubmit={handleSubmit}>
+          <form 
+            onSubmit={handleSubmit} 
+            className="w-full md:w-1/2 mb-8 md:mb-0"
+          >
+            {/* Name Input */}
             <div className="mb-4">
               <label htmlFor="name" className="block text-sm font-semibold mb-2 text-text">Name</label>
               <input 
@@ -46,6 +77,8 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
                 required 
               />
             </div>
+
+            {/* Email Input */}
             <div className="mb-4">
               <label htmlFor="email" className="block text-sm font-semibold mb-2 text-text">Email</label>
               <input 
@@ -58,6 +91,8 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
                 required 
               />
             </div>
+
+            {/* Message Input */}
             <div className="mb-4">
               <label htmlFor="message" className="block text-sm font-semibold mb-2 text-text">Message</label>
               <textarea 
@@ -70,6 +105,8 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
                 required
               ></textarea>
             </div>
+
+            {/* Submit Button with Status Handling */}
             <button 
               type="submit" 
               className="bg-primary text-background py-2 px-4 rounded-md hover:bg-secondary transition-colors flex items-center justify-center hover-effect"
@@ -82,21 +119,66 @@ const Contact: React.FC<ContactProps> = ({/* Theme */}) => {
               )}
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
+
+            {/* Submission Status Messages */}
+            {submitStatus === 'success' && (
+              <p className="text-green-500 mt-4">
+                Message sent successfully! I'll get back to you soon.
+              </p>
+            )}
+            {submitStatus === 'error' && (
+              <p className="text-red-500 mt-4">
+                Oops! Something went wrong. Please try again.
+              </p>
+            )}
           </form>
+
+          {/* Existing Contact Links */}
           <div className="w-full md:w-1/3">
             <h3 className="text-2xl font-semibold mb-4 text-primary">Connect with me</h3>
             <div className="space-y-4">
-              <a href="https://linkedin.com/in/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
-                <Linkedin size={24} className="mr-2" /> linkedin.com/in/stephan-volynets/
+              <a 
+                href="https://linkedin.com/in/stephanvolynets" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center text-text hover:text-primary transition-colors"
+              >
+                <Linkedin size={24} className="mr-2" /> 
+                linkedin.com/in/stephan-volynets/
               </a>
-              <a href="https://github.com/stephanvolynets" target="_blank" rel="noopener noreferrer" className="flex items-center text-text hover:text-primary transition-colors">
-                <Github size={24} className="mr-2" /> GitHub.com/stephanvolynets
+              <a 
+                href="https://github.com/stephanvolynets" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-center text-text hover:text-primary transition-colors"
+              >
+                <Github size={24} className="mr-2" /> 
+                GitHub.com/stephanvolynets
               </a>
-              <a href="mailto:svv6@cornell.edu" className="flex items-center text-text hover:text-primary transition-colors">
-                <Mail size={24} className="mr-2" /> svv6@cornell.edu
+              <a 
+                href="mailto:svv6@cornell.edu" 
+                className="flex items-center text-text hover:text-primary transition-colors"
+              >
+                <Mail size={24} className="mr-2" /> 
+                svv6@cornell.edu
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Formspree Attribution */}
+        <div className="text-center mt-4 text-md text-gray-500">
+          <span>
+            Powered by{' '}
+            <a 
+              href="https://formspree.io" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="underline hover:text-primary transition-colors"
+            >
+              Formspree
+            </a>
+          </span>
         </div>
       </div>
     </section>

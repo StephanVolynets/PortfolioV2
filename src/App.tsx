@@ -9,23 +9,11 @@ import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import { ArrowUp } from 'lucide-react';
 import CV from './components/CV';
+// import Head from 'next/head';
 
 function App() {
   const [theme, setTheme] = useState('dark');
   const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    // Add favicon to the document head
-    const favicon = document.createElement('link');
-    favicon.rel = 'icon';
-    favicon.href = '/favicon.ico';
-    document.head.appendChild(favicon);
-    
-    // Cleanup function to remove the favicon when the component unmounts
-    return () => {
-      document.head.removeChild(favicon);
-    };
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,28 +57,31 @@ function App() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${theme}`}>
-      <CustomCursor />
-      <Header theme={theme} toggleTheme={toggleTheme} />
-      <main>
-        <Hero theme={theme} />
-        <About theme={theme} />
-        <Skills theme={theme} />
-        <CV theme={theme} />
-        <Projects theme={theme} />
-        <Contact theme={theme} />
-      </main>
-      <Footer theme={theme} />
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-primary text-background p-3 rounded-full shadow-lg hover:bg-secondary transition-colors duration-300"
-          aria-label="Scroll to top"
-        >
-          <ArrowUp size={24} />
-        </button>
-      )}
-    </div>
+    <>
+  
+      <div className={`min-h-screen transition-colors duration-300 ${theme}`}>
+        <CustomCursor />
+        <Header theme={theme} toggleTheme={toggleTheme} />
+        <main>
+          <Hero theme={theme} />
+          <About theme={theme} />
+          <Skills theme={theme} />
+          <CV theme={theme} />
+          <Projects theme={theme} />
+          <Contact theme={theme} />
+        </main>
+        <Footer theme={theme} />
+        {showScrollTop && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 bg-primary text-background p-3 rounded-full shadow-lg hover:bg-secondary transition-colors duration-300"
+            aria-label="Scroll to top"
+          >
+            <ArrowUp size={24} />
+          </button>
+        )}
+      </div>
+    </>
   );
 }
 
