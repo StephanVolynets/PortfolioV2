@@ -128,7 +128,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
       <canvas ref={canvasRef} className="particle-network"></canvas>
       <div className="max-w-4xl mx-auto z-10">
         <img
-          src="https://media.licdn.com/dms/image/v2/C4D03AQH4UZKn7Ny3uQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1662479258603?e=1735171200&v=beta&t=3LrHtCCOQ3mwxBSj7-28eK-OcvYTqhlIxkmQ5NzL4Zk"
+         src="/1662479258603.jpeg"
           alt="Stephan Volynets"
           className="w-48 h-48 rounded-full border-4 border-primary shadow-lg mb-8 mx-auto"
         />
