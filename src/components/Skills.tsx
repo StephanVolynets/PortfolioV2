@@ -24,7 +24,7 @@ const Skills: React.FC<SkillsProps> = ({ theme }) => {
             strokeWidth={3} 
             animationDuration={2000}
           >
-            My Toolkit
+            My Data
           </RoughNotation>
         </h2>
         <div className="bg-highlight p-8 rounded-lg shadow-md font-mono text-md md:text-lg">

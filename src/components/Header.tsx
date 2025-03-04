@@ -34,11 +34,11 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
 
   // Update navItems to include "CV" for display
   const navItems = [
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
+    { id: 'about', label: 'ABOUT' },
+    { id: 'skills', label: 'DATA' },
     { id: 'cv', label: 'CV' }, // Keep the ID lowercase
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'projects', label: 'PROJECTS' },
+    { id: 'contact', label: 'CONTACT' },
   ];
 
   return (

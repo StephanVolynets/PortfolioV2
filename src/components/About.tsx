@@ -87,7 +87,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               >
                 Information Sciences
               </RoughNotation>
-              , I specialize in blockchain technologies, development, and data-driven solutions. My academic and professional experiences have allowed me to apply my expertise in{" "}
+              , I specialize in blockchain technologies, development, and data driven solutions. My academic and professional experiences have allowed me to apply my expertise in{" "}
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
@@ -117,7 +117,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               >
                 TypeScript
               </RoughNotation>
-              , and collaborative software development to create impactful, user-centric applications.
+              , and collaborative software development to create impactful, user centric applications.
             </p>
             <p className="text-xl mb-8 leading-relaxed">
               I have actively contributed to the blockchain ecosystem through my role in{" "}
@@ -140,7 +140,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               >
                 Silicore.io
               </RoughNotation>
-              , which was showcased at prestigious events like the Meridian Conference. These experiences have honed my ability to translate complex technical concepts into real-world applications that empower users.
+              , which was showcased at prestigious events like the Meridian Conference. These experiences have honed my ability to translate complex technical concepts into real world applications that empower users.
             </p>
             <p className="text-xl leading-relaxed">
               Fluent in{" "}
@@ -153,7 +153,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
               >
                 English and Russian
               </RoughNotation>
-              , I bring a global perspective to problem-solving, ensuring inclusivity and impact in every project I undertake. My dedication to technology is matched by a commitment to advancing understanding within{" "}
+              , I bring a global perspective to problem solving, ensuring inclusivity and impact in every project I undertake. My dedication to technology is matched by a commitment to advancing understanding within{" "}
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
