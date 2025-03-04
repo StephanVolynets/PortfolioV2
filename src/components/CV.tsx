@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { RoughNotation } from "react-rough-notation";
 
 interface CVProps {
@@ -8,36 +8,11 @@ interface CVProps {
 const CV: React.FC<CVProps> = ({ theme }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   return (
     <section
       id="cv"
       ref={sectionRef}
-      className={`py-20 fade-in ${
-        theme === "dark" ? "bg-background" : "bg-gray-100"
-      }`}
+      className={`py-20 ${theme === "dark" ? "bg-background" : "bg-white"}`}
     >
       <div className="container mx-auto px-4">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">
@@ -51,7 +26,7 @@ const CV: React.FC<CVProps> = ({ theme }) => {
             My CV
           </RoughNotation>
         </h2>
-        <div className="bg-highlight p-6 rounded-lg shadow-md text-text space-y-8">
+        <div className={`p-6 rounded-lg shadow-md space-y-8 ${theme === 'dark' ? 'bg-highlight text-text' : 'bg-gray-100 text-gray-800'}`}>
           {/* EDUCATION */}
           <div>
             <h3 className="text-2xl font-semibold mb-4 text-lime-500">

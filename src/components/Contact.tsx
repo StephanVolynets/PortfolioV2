@@ -6,7 +6,7 @@ interface ContactProps {
   theme: string;
 }
 
-const Contact: React.FC<ContactProps> = () => {
+const Contact: React.FC<ContactProps> = ({ theme }) => {
   const [formState, setFormState] = useState({ 
     name: '', 
     email: '', 
@@ -51,11 +51,13 @@ const Contact: React.FC<ContactProps> = () => {
     }
   };
 
+  const primaryColor = theme === 'dark' ? '#86C232' : '#4a9d4a';
+
   return (
-    <section id="contact" className="py-20 section-fade bg-background">
+    <section id="contact" className={`py-20 ${theme === 'dark' ? 'bg-background' : 'bg-white'}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-5xl font-bold mb-8 text-center text-primary">
-          <RoughNotation type="underline" color="#86C232" show={true} strokeWidth={3}>
+          <RoughNotation type="underline" color={primaryColor} show={true} strokeWidth={3}>
             Let's Connect!
           </RoughNotation>
         </h2>
@@ -66,42 +68,48 @@ const Contact: React.FC<ContactProps> = () => {
           >
             {/* Name Input */}
             <div className="mb-4">
-              <label htmlFor="name" className="block text-sm font-semibold mb-2 text-text">Name</label>
+              <label htmlFor="name" className={`block text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>Name</label>
               <input 
                 type="text" 
                 id="name" 
                 name="name" 
                 value={formState.name}
                 onChange={handleChange}
-                className="w-full px-3 py-2 bg-highlight text-text border border-accent rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
+                  theme === 'dark' ? 'bg-highlight text-text border-accent' : 'bg-white text-gray-800 border-gray-300'
+                }`}
                 required 
               />
             </div>
 
             {/* Email Input */}
             <div className="mb-4">
-              <label htmlFor="email" className="block text-sm font-semibold mb-2 text-text">Email</label>
+              <label htmlFor="email" className={`block text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>Email</label>
               <input 
                 type="email" 
                 id="email" 
                 name="email" 
                 value={formState.email}
                 onChange={handleChange}
-                className="w-full px-3 py-2 bg-highlight text-text border border-accent rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
+                  theme === 'dark' ? 'bg-highlight text-text border-accent' : 'bg-white text-gray-800 border-gray-300'
+                }`}
                 required 
               />
             </div>
 
             {/* Message Input */}
             <div className="mb-4">
-              <label htmlFor="message" className="block text-sm font-semibold mb-2 text-text">Message</label>
+              <label htmlFor="message" className={`block text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>Message</label>
               <textarea 
                 id="message" 
                 name="message" 
                 rows={4} 
                 value={formState.message}
                 onChange={handleChange}
-                className="w-full px-3 py-2 bg-highlight text-text border border-accent rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
+                  theme === 'dark' ? 'bg-highlight text-text border-accent' : 'bg-white text-gray-800 border-gray-300'
+                }`}
                 required
               ></textarea>
             </div>
@@ -135,13 +143,13 @@ const Contact: React.FC<ContactProps> = () => {
 
           {/* Existing Contact Links */}
           <div className="w-full md:w-1/3">
-            <h3 className="text-2xl font-semibold mb-4 text-primary">Connect with me</h3>
+            <h3 className={`text-2xl font-semibold mb-4 text-primary`}>Connect with me</h3>
             <div className="space-y-4">
               <a 
                 href="https://linkedin.com/in/stephanvolynets" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center text-text hover:text-primary transition-colors"
+                className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
               >
                 <Linkedin size={24} className="mr-2" /> 
                 linkedin.com/in/stephan-volynets/
@@ -150,14 +158,14 @@ const Contact: React.FC<ContactProps> = () => {
                 href="https://github.com/stephanvolynets" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center text-text hover:text-primary transition-colors"
+                className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
               >
                 <Github size={24} className="mr-2" /> 
                 GitHub.com/stephanvolynets
               </a>
               <a 
                 href="mailto:svv6@cornell.edu" 
-                className="flex items-center text-text hover:text-primary transition-colors"
+                className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
               >
                 <Mail size={24} className="mr-2" /> 
                 svv6@cornell.edu

@@ -16,6 +16,7 @@
 
 body {
   font-family: 'Quicksand', sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body.dark {
@@ -53,15 +54,17 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateY(-2px);
 }
 
+/* Remove fade-in animations that cause issues with theme switching */
 .section-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.section-fade.visible {
   opacity: 1;
   transform: translateY(0);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .nav-link {
@@ -238,13 +241,73 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(30px);
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+/* Ensure proper contrast for form elements in both themes */
+.dark input, 
+.dark textarea, 
+.dark select {
+  color: var(--color-text);
+  background-color: var(--color-highlight);
+  border-color: var(--color-accent);
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+.light input, 
+.light textarea, 
+.light select {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+/* Focus states for interactive elements */
+.dark button:focus,
+.dark a:focus,
+.dark input:focus,
+.dark textarea:focus,
+.dark select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.light button:focus,
+.light a:focus,
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Ensure links have proper contrast */
+.dark a {
+  color: var(--color-primary);
+}
+
+.light a {
+  color: var(--color-secondary);
+}
+
+/* Ensure proper contrast for disabled elements */
+.dark button:disabled,
+.dark input:disabled,
+.dark textarea:disabled,
+.dark select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.light button:disabled,
+.light input:disabled,
+.light textarea:disabled,
+.light select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Ensure text colors are properly set for light mode */
+.light .text-text {
+  color: #333333;
+}
+
+.light .bg-highlight {
+  background-color: #e0e0e0;
 }

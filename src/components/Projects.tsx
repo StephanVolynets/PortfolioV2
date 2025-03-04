@@ -56,10 +56,10 @@ const Projects: React.FC<ProjectsProps> = ({ theme }) => {
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
 
   return (
-    <section id="projects" className={`py-20 section-fade ${theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'}`}>
+    <section id="projects" className={`py-20 ${theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'}`}>
       <div className="container mx-auto px-4">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">
-          <RoughNotation type="underline" color="#86C232" show={true} strokeWidth={3}>
+          <RoughNotation type="underline" color={theme === 'dark' ? "#86C232" : "#4a9d4a"} show={true} strokeWidth={3}>
             Projects Showcase
           </RoughNotation>
         </h2>
@@ -67,10 +67,11 @@ const Projects: React.FC<ProjectsProps> = ({ theme }) => {
           {projects.map((project, index) => (
             <div 
               key={index} 
-              className="relative border border-accent p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2"
+              className={`relative border p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 ${
+                theme === 'dark' ? 'border-accent' : 'border-gray-300'
+              }`}
               onMouseEnter={() => setHoveredProject(index)}
               onMouseLeave={() => setHoveredProject(null)}
-              // style={project.title === 'Census Trends Dashboard'} ? { cursor: 'pointer'} : {}
               onClick={() => {
                 if (project.title === 'Silicore.io') {
                   window.open('https://www.silicore.io', '_blank');
@@ -85,13 +86,18 @@ const Projects: React.FC<ProjectsProps> = ({ theme }) => {
                   window.open('https://github.com/StephanVolynets/MovieAdminPanel', '_blank')
                 }
               }}
-              style={project.title === 'Silicore.io'  ? { cursor: 'pointer' } : {}}
+              style={project.title === 'Silicore.io' || project.title === 'Census Trends Dashboard' || project.title === 'Cornell Boxing Club - Event RSVP App' || project.title === 'Cinematic Showcase - Movie Database' ? { cursor: 'pointer' } : {}}
             >
               <h3 className="text-2xl font-semibold mb-4 text-primary">{project.title}</h3>
-              <p className="text-text mb-6">{project.description}</p>
+              <p className={`mb-6 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>{project.description}</p>
               <div className="flex flex-wrap mb-4">
                 {project.tags.map((tag, tagIndex) => (
-                  <span key={tagIndex} className="bg-accent text-text text-sm font-medium mr-2 mb-2 px-2.5 py-0.5 rounded">
+                  <span 
+                    key={tagIndex} 
+                    className={`text-sm font-medium mr-2 mb-2 px-2.5 py-0.5 rounded ${
+                      theme === 'dark' ? 'bg-accent text-text' : 'bg-gray-200 text-gray-800'
+                    }`}
+                  >
                     {tag}
                   </span>
                 ))}

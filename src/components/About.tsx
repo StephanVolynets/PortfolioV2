@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
 
 interface AboutProps {
@@ -8,29 +8,6 @@ interface AboutProps {
 const About: React.FC<AboutProps> = ({ theme }) => {
   const sectionRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
   const underlineColor = theme === "dark" ? "#86C232" : "#4a9d4a";
   const highlightColor = theme === "dark" ? "rgba(134, 194, 50, 0.2)" : "rgba(74, 157, 74, 0.2)";
 
@@ -38,7 +15,7 @@ const About: React.FC<AboutProps> = ({ theme }) => {
     <section
       id="about"
       ref={sectionRef}
-      className={`py-24 fade-in ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}
+      className={`py-24 ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}
     >
       <div className="container mx-auto px-6">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">

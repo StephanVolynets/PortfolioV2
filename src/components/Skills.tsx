@@ -14,7 +14,7 @@ const skillsData = [
 
 const Skills: React.FC<SkillsProps> = ({ theme }) => {
   return (
-    <section id="skills" className={`py-24 section-fade ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
+    <section id="skills" className={`py-24 ${theme === 'dark' ? 'bg-background' : 'bg-white'}`}>
       <div className="container mx-auto px-6">
         <h2 className="text-5xl font-bold mb-16 text-center text-primary">
           <RoughNotation 
@@ -27,13 +27,13 @@ const Skills: React.FC<SkillsProps> = ({ theme }) => {
             My Data
           </RoughNotation>
         </h2>
-        <div className="bg-highlight p-8 rounded-lg shadow-md font-mono text-md md:text-lg">
+        <div className={`p-8 rounded-lg shadow-md font-mono text-md md:text-lg ${theme === 'dark' ? 'bg-highlight text-text' : 'bg-gray-100 text-gray-800'}`}>
           <div className="flex items-center mb-6">
             <div className="w-4 h-4 rounded-full bg-red-500 mr-3"></div>
             <div className="w-4 h-4 rounded-full bg-yellow-500 mr-3"></div>
             <div className="w-4 h-4 rounded-full bg-green-500"></div>
           </div>
-          <div className="text-text whitespace-pre-line leading-relaxed">
+          <div className={`whitespace-pre-line leading-relaxed ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>
             {skillsData.map((skill, index) => (
               <div key={index} className="mb-6 last:mb-0">
                 <span className="text-primary font-semibold">&gt;&gt;&gt; Stephan.{skill.name}</span>

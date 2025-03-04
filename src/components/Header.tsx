@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 interface HeaderProps {
   theme: string;
@@ -60,10 +61,14 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
               {label} {/* Display the label, which can be "CV" */}
             </button>
           ))}
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
         </nav>
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
-        </button>
+        <div className="md:hidden flex items-center space-x-4">
+          <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
+          </button>
+        </div>
       </div>
       {isMenuOpen && (
         <nav className={`md:hidden py-6 ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
