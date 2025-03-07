@@ -10,21 +10,21 @@ const projects = [
   {
     title: 'Silicore.io',
     description: 'Developed as part of the "Build Better on Stellar: Smart Contract Challenge," Silicore is a platform that enables cryptocurrency traders to compare trusted exchanges, secure optimal rates, and trade efficiently. It provides real time data and insights, allowing users to make informed decisions by comparing various exchanges and their rates.',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    github: 'https://github.com/StephanVolynets/Silicore-front-end-local',
+    live: 'https://www.silicore.io/',
     tags: ['Blockchain', 'Nest.js', 'Typescript', 'Web Sockets']
   },
   {
     title: 'Cornell Boxing Club - Event RSVP App',
     description: 'A modern, responsive React application to manage event RSVPs with real time updates, a dynamic grid layout, smooth animations, and mobile friendly design. Seamless RSVP functionality is supported by a modular component architecture and efficient API communication.',
-    github: 'https://github.com',
-    live: 'https://example.com',
+    github: 'https://github.com/StephanVolynets/EVENT-RSVP-APP-MERN',
+    live: 'https://stephanvolynets.github.io/EVENT-RSVP-APP-MERN/',
     tags: ['MongoDB', 'Express.js', 'Restful Architecture']
   },	
   {
     title: 'Census Trends Dashboard (Cornell – CS 3300)',
     description: 'Collaborated with a team of four to develop an interactive global visualization using Vanilla JS + D3.js by merging life expectancy data from the World Bank and population data from Our World In Data into a TopoJSON world map. Engineered data processing pipelines to reconcile disparate country names, align multiyear datasets, and compute dynamic color scales using a linear scale for life expectancy and a logarithmic scale for population.',
-    github: 'https://github.com',
+    github: 'https://github.com/StephanVolynets/info3300p2',
     live: 'https://stephanvolynets.github.io/info3300p2/',
     tags: ['D3.js', 'Data Processing', 'Interactivity', 'Collaboration']
   },
@@ -45,7 +45,7 @@ const projects = [
   {
     title: 'Cinematic Showcase - Movie Database',
     description: 'Dynamic content management app that features both a public facing interface for users to explore top ranked films across various genres, as well as a comprehensive admin panel for content management, secure by user authentication.',
-    github: 'https://github.com',
+    github: 'hthttps://github.com/StephanVolynets/MovieAdminPanel',
     live: 'https://example.com',
     tags: ['PHP', 'SQLlite', 'Session Management', 'Security']
   }
