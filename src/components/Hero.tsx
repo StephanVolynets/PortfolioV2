@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { ArrowDown } from 'lucide-react';
 
-
 interface HeroProps {
   theme: string;
 }
@@ -111,7 +110,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
 
   return (
     <section className={`min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
-      <style >{`
+      <style>{`
         @keyframes flicker {
           0%, 18%, 22%, 25%, 53%, 57%, 100% {
             opacity: 1;
@@ -128,21 +127,35 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
       <canvas ref={canvasRef} className="particle-network"></canvas>
       <div className="max-w-4xl mx-auto z-10">
         <img
-         src="/1662479258603.jpeg"
+          src="/1662479258603.jpeg"
           alt="Stephan Volynets"
           className="w-48 h-48 rounded-full border-4 border-primary shadow-lg mb-8 mx-auto"
         />
-      <h1 className={`glitch flicker text-6xl md:text-7xl font-bold mb-6 leading-tight ${theme === 'dark' ? 'text-lime-300' : 'text-lime-800'}`}>
-        Stephan Volynets
-      </h1>
+        <h1 className={`glitch flicker text-6xl md:text-7xl font-bold mb-6 leading-tight ${theme === 'dark' ? 'text-lime-300' : 'text-lime-800'}`}>
+          Stephan Volynets
+        </h1>
         <p className="typewriter terminal-prompt text-2xl md:text-3xl mb-8 max-w-3xl mx-auto text-lime-500">
           {typedText}
         </p>
         <div className="flex flex-wrap justify-center gap-4 mt-16 mb-32">
-          <a href="#about" className="bg-lime-500 text-background hover:bg-lime-600 text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300">
+          <a 
+            href="#about" 
+            className={`bg-transparent border-2 ${
+              theme === 'dark'
+                ? 'border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-background'
+                : 'border-lime-600 text-lime-600 hover:bg-lime-600 hover:text-white'
+            } text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300`}
+          >
             Discover My Journey
           </a>
-          <a href="#contact" className="bg-transparent border-2 border-lime-500 text-lime-500 hover:bg-lime-500 hover:text-background text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300">
+          <a 
+            href="#contact" 
+            className={`bg-transparent border-2 ${
+              theme === 'dark'
+                ? 'border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-background'
+                : 'border-lime-600 text-lime-600 hover:bg-lime-600 hover:text-white'
+            } text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300`}
+          >
             Let's Connect!
           </a>
         </div>
