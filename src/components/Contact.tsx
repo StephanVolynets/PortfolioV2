@@ -146,7 +146,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
             <h3 className={`text-2xl font-semibold mb-4 text-primary`}>Connect with me</h3>
             <div className="space-y-4">
               <a 
-                href="https://linkedin.com/in/stephanvolynets" 
+                href="https://www.linkedin.com/in/stephan-volynets/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
