@@ -33,7 +33,6 @@ interface VerticalNavProps {
 const portfolioItems: NavItem[] = [
   { name: 'About', href: '#about', description: 'Learn more about me', icon: <User className="h-4 w-4" /> },
   { name: 'Skills', href: '#skills', description: 'Technical expertise', icon: <Code className="h-4 w-4" /> },
-  { name: 'CV', href: '#cv', description: 'Professional experience', icon: <FileText className="h-4 w-4" /> },
   { name: 'Projects', href: '#projects', description: 'Featured work', icon: <Folder className="h-4 w-4" /> },
 ];
 

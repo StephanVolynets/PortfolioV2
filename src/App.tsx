@@ -8,7 +8,6 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
-import CV from './components/CV';
 import { WalletContextProvider } from './components/WalletProvider';
 import DonationWidget from './components/DonationWidget';
 import { Toaster } from 'sonner';
@@ -87,9 +86,6 @@ function App() {
             </section>
             <section id="skills">
               <Skills theme={theme} />
-            </section>
-            <section id="cv">
-              <CV theme={theme} />
             </section>
             <section id="projects">
               <Projects theme={theme} />

@@ -27,8 +27,6 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
   const mouseY = useMotionValue(0);
   const [isRaining, setIsRaining] = useState(false);
   const [moneyBills, setMoneyBills] = useState<Array<{ id: number; x: number; rotation: number }>>([]);
-  const [selectedFilter, setSelectedFilter] = useState('Daily');
-  const [selectedPercentage, setSelectedPercentage] = useState('Top 10');
 
   // Generate more frequent candlestick data
   const generateCandlestickData = (count: number) => {
@@ -491,34 +489,6 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
             </motion.button>
           </motion.div>
         </div>
-      </div>
-
-      {/* Add default filter state */}
-      const [selectedFilter, setSelectedFilter] = useState('Daily');
-      const [selectedPercentage, setSelectedPercentage] = useState('Top 10');
-
-      {/* Update the filter UI in the header */}
-      <div className="absolute top-0 right-4 flex items-center gap-2 p-2">
-        <select 
-          value={selectedFilter}
-          onChange={(e) => setSelectedFilter(e.target.value)}
-          className="bg-[#252832] text-[#85bb65] border border-[#363A45]/50 rounded px-2 py-1 text-sm"
-        >
-          <option value="Hourly">Hourly</option>
-          <option value="Daily">Daily</option>
-          <option value="Weekly">Weekly</option>
-          <option value="Monthly">Monthly</option>
-        </select>
-        <select
-          value={selectedPercentage}
-          onChange={(e) => setSelectedPercentage(e.target.value)}
-          className="bg-[#252832] text-[#85bb65] border border-[#363A45]/50 rounded px-2 py-1 text-sm"
-        >
-          <option value="Top 10">Top 10</option>
-          <option value="Top 25">Top 25</option>
-          <option value="Top 50">Top 50</option>
-          <option value="All">All</option>
-        </select>
       </div>
     </div>
   );
