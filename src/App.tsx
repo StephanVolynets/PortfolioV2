@@ -75,9 +75,9 @@ function App() {
     <WalletContextProvider>
       <div className={`min-h-screen transition-colors duration-300 ${theme}`}>
         <Header theme={theme} toggleTheme={toggleTheme} />
-        <div className="flex">
+        <div className="flex flex-col lg:flex-row">
           <VerticalNav theme={theme} />
-          <main className="flex-1 lg:ml-64">
+          <main className="flex-1 lg:ml-64 pt-14">
             <section id="hero">
               <Hero theme={theme} />
             </section>
@@ -93,11 +93,13 @@ function App() {
             <section id="contact">
               <Contact theme={theme} />
             </section>
-            <section id="donation" className="py-16">
-              <DonationWidget 
-                recipientAddress="4NicjQQ4rpb6xy1zfuyGNgYzKs5jydvtnEctxpTNMWVX" 
-                theme={theme} 
-              />
+            <section id="donation" className="py-8 sm:py-16">
+              <div className="px-4 sm:px-6 max-w-md mx-auto">
+                <DonationWidget 
+                  recipientAddress="4NicjQQ4rpb6xy1zfuyGNgYzKs5jydvtnEctxpTNMWVX" 
+                  theme={theme} 
+                />
+              </div>
             </section>
           </main>
         </div>
@@ -105,10 +107,10 @@ function App() {
         {showScrollTop && (
           <button
             onClick={scrollToTop}
-            className="fixed bottom-8 right-8 bg-primary text-background p-3 rounded-full shadow-lg hover:bg-secondary transition-colors duration-300"
+            className="fixed bottom-20 lg:bottom-8 right-4 lg:right-8 bg-primary text-background p-2 sm:p-3 rounded-full shadow-lg hover:bg-secondary transition-colors duration-300 z-30"
             aria-label="Scroll to top"
           >
-            <ArrowUp size={24} />
+            <ArrowUp size={20} className="sm:w-5 sm:h-5" />
           </button>
         )}
         <Toaster position="bottom-right" />

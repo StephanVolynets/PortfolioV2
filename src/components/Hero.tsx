@@ -240,49 +240,49 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1D24]/60 via-transparent to-[#1A1D24]/80" />
       </div>
 
-      <div className="absolute inset-0 flex items-start justify-center px-6 pt-24">
+      <div className="absolute inset-0 flex items-start justify-center px-4 sm:px-6 pt-12 sm:pt-24">
         <div className="w-full max-w-7xl mx-auto">
-          {/* Reduced size header */}
-          <div className="flex items-center justify-between mb-4 px-4 py-2 bg-[#252832]/80 rounded-lg backdrop-blur-md border border-[#363A45]/50">
-            <div className="flex items-center gap-4">
+          {/* Reduced size header - responsive version */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 px-3 sm:px-4 py-2 bg-[#252832]/80 rounded-lg backdrop-blur-md border border-[#363A45]/50">
+            <div className="flex items-center gap-2 sm:gap-4 mb-2 sm:mb-0">
               <motion.div
-                className="flex items-center gap-2 text-[#85bb65]"
+                className="flex items-center gap-1 sm:gap-2 text-[#85bb65]"
               >
-                <TrendingUp className="w-4 h-4" />
-                <span className="font-mono text-sm font-medium">DEV/SKILLS</span>
-                <Star className="w-3 h-3 text-[#85bb65]" />
+                <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="font-mono text-xs sm:text-sm font-medium">DEV/SKILLS</span>
+                <Star className="w-2 h-2 sm:w-3 sm:h-3 text-[#85bb65]" />
               </motion.div>
               <motion.div 
-                className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#2A2E39]/60 border border-[#85bb65]/20"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 rounded-md bg-[#2A2E39]/60 border border-[#85bb65]/20"
               >
-                <span className="text-[#85bb65] font-mono text-sm">${currentPrice}</span>
+                <span className="text-[#85bb65] font-mono text-xs sm:text-sm">${currentPrice}</span>
                 <span className={cn(
-                  "flex items-center gap-1 font-mono text-xs",
+                  "flex items-center gap-1 font-mono text-[10px] sm:text-xs",
                   priceChange >= 0 ? "text-[#85bb65]" : "text-red-500"
                 )}>
-                  {priceChange >= 0 ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                  {priceChange >= 0 ? <ChevronUp className="w-2 h-2 sm:w-3 sm:h-3" /> : <ChevronDown className="w-2 h-2 sm:w-3 sm:h-3" />}
                   {Math.abs(priceChange)}%
                 </span>
               </motion.div>
             </div>
             
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 border-r border-[#363A45]/50 pr-4">
+            <div className="flex items-center justify-between sm:justify-normal gap-2 sm:gap-4">
+              <div className="flex items-center gap-1 sm:gap-2 border-r border-[#363A45]/50 pr-2 sm:pr-4">
                 {indicators.map((indicator) => (
                   <span
                     key={indicator}
-                    className="text-xs font-mono text-[#B2B5BE]/50"
+                    className="text-[10px] sm:text-xs font-mono text-[#B2B5BE]/50"
                   >
                     {indicator}
                   </span>
                 ))}
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-px sm:gap-1">
                 {timeframes.map((tf) => (
                   <span
                     key={tf}
                     className={cn(
-                      "px-2 py-1 text-xs font-mono cursor-pointer transition-colors",
+                      "px-1 sm:px-2 py-1 text-[10px] sm:text-xs font-mono cursor-pointer transition-colors",
                       timeframe === tf 
                         ? "text-white bg-[#85bb65] rounded-md" 
                         : "text-[#B2B5BE]/50 hover:text-[#B2B5BE]"
@@ -296,9 +296,9 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
             </div>
           </div>
 
-          {/* Chart area with name and sparkles */}
-          <div className="relative aspect-[21/9] w-full bg-[#252832]/50 rounded-xl p-8 backdrop-blur-xl border border-[#363A45]/30 shadow-2xl overflow-hidden">
-            <div ref={chartRef} className="absolute inset-6">
+          {/* Chart area with name and sparkles - responsive version */}
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] w-full bg-[#252832]/50 rounded-xl p-4 sm:p-8 backdrop-blur-xl border border-[#363A45]/30 shadow-2xl overflow-hidden">
+            <div ref={chartRef} className="absolute inset-4 sm:inset-6">
               {/* Enhanced chart background with faint grid numbers */}
               <div className="absolute inset-0 backdrop-blur-[8px]">
                 <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -381,53 +381,53 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                 </svg>
               </div>
 
-              {/* Content overlay with sparkles */}
-              <div className="absolute inset-0 flex flex-col items-center justify-start pt-24">
+              {/* Content overlay with sparkles - responsive version */}
+              <div className="absolute inset-0 flex flex-col items-center justify-start pt-10 sm:pt-24">
                 {/* Name with sparkles - adjusted position */}
-                <div className="relative w-full h-32">
-                  <h1 className="text-7xl font-bold text-center text-white relative z-20 translate-y-8">
+                <div className="relative w-full h-20 sm:h-32">
+                  <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-center text-white relative z-20 translate-y-6 sm:translate-y-8">
                     Stephan Volynets
                   </h1>
                   
-                  {/* Centered gradients with extended lengths */}
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[3px] w-[800px] blur-sm" />
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[1.5px] w-[800px]" />
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[6px] w-[300px] blur-sm" />
-                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[1.5px] w-[300px]" />
+                  {/* Centered gradients with responsive widths */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[2px] sm:h-[3px] w-[90%] sm:w-[800px] blur-sm" />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[1px] sm:h-[1.5px] w-[90%] sm:w-[800px]" />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[4px] sm:h-[6px] w-[60%] sm:w-[300px] blur-sm" />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[1px] sm:h-[1.5px] w-[60%] sm:w-[300px]" />
 
                   {/* Sparkles */}
                   <SparklesCore
                     background="transparent"
-                    minSize={0.4}
-                    maxSize={1}
-                    particleDensity={1200}
+                    minSize={0.3}
+                    maxSize={0.8}
+                    particleDensity={800}
                     className="w-full h-full"
                     particleColor="#85bb65"
                   />
 
                   {/* Radial Gradient */}
-                  <div className="absolute inset-0 w-full h-full bg-[#252832]/50 [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+                  <div className="absolute inset-0 w-full h-full bg-[#252832]/50 [mask-image:radial-gradient(250px_150px_at_top,transparent_20%,white)]"></div>
                 </div>
 
-                {/* Info box with gradient border - adjusted margin */}
+                {/* Info box with gradient border - responsive version */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
-                  className="relative p-8 rounded-xl overflow-hidden mt-8"
+                  className="relative p-3 sm:p-8 rounded-xl overflow-hidden mt-4 sm:mt-8 mx-2 sm:mx-0"
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-[#85bb65]/20 via-[#85bb65]/10 to-[#85bb65]/20 backdrop-blur-sm rounded-xl" />
                   <div className="absolute inset-[1px] bg-[#252832]/90 rounded-xl" />
                   
-                  <div className="relative space-y-4 text-2xl font-light">
-                    <p className="text-[#B2B5BE] flex items-center justify-center gap-2">
+                  <div className="relative space-y-2 sm:space-y-4 text-sm sm:text-xl md:text-2xl font-light">
+                    <p className="text-[#B2B5BE] flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
                       <span>📚</span> Studying Computer and Data Science @ 
                       <span className="relative">
                         Cornell University
                         <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#85bb65]/40"></span>
                       </span>
                     </p>
-                    <p className="text-[#B2B5BE] flex items-center justify-center gap-2">
+                    <p className="text-[#B2B5BE] flex items-center justify-center gap-1 sm:gap-2 flex-wrap">
                       <span>⛓️</span> Consulting Team Member @ 
                       <span className="relative">
                         Cornell Blockchain
@@ -439,8 +439,8 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
               </div>
             </div>
 
-            {/* Social links */}
-            <div className="absolute bottom-6 right-6 flex gap-4">
+            {/* Social links - responsive version */}
+            <div className="absolute bottom-3 sm:bottom-6 right-3 sm:right-6 flex gap-2 sm:gap-4">
               {[
                 { href: "https://github.com/StephanVolynets", Icon: Github },
                 { href: "https://linkedin.com/in-stephan-volynets", Icon: Linkedin }
@@ -450,42 +450,42 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-[#2A2E39]/60 hover:bg-[#85bb65]/20 border border-[#85bb65]/20 transition-all"
+                  className="p-2 sm:p-3 rounded-lg bg-[#2A2E39]/60 hover:bg-[#85bb65]/20 border border-[#85bb65]/20 transition-all"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Icon className="w-5 h-5 text-[#85bb65]" />
+                  <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-[#85bb65]" />
                 </motion.a>
               ))}
             </div>
           </div>
 
-          {/* CTA buttons */}
+          {/* CTA buttons - responsive version */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1 }}
-            className="mt-6 flex justify-center gap-4"
+            className="mt-4 sm:mt-6 flex flex-col sm:flex-row justify-center gap-3 sm:gap-4"
           >
             <motion.a
               href="#projects"
-              className="group px-6 py-3 bg-[#85bb65] rounded-lg overflow-hidden flex items-center gap-2 hover:bg-[#5d8f3d] transition-all shadow-lg shadow-[#85bb65]/20"
+              className="group px-4 sm:px-6 py-2 sm:py-3 bg-[#85bb65] rounded-lg overflow-hidden flex items-center justify-center sm:justify-start gap-2 hover:bg-[#5d8f3d] transition-all shadow-lg shadow-[#85bb65]/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Code2 className="w-5 h-5" />
-              <span className="font-medium text-lg">View Projects</span>
-              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+              <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="font-medium text-base sm:text-lg">View Projects</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
             </motion.a>
 
             <motion.button
               onClick={generateBills}
-              className="group px-6 py-3 bg-[#85bb65] rounded-lg overflow-hidden flex items-center gap-2 hover:bg-[#5d8f3d] transition-all shadow-lg shadow-[#85bb65]/20"
+              className="group px-4 sm:px-6 py-2 sm:py-3 bg-[#85bb65] rounded-lg overflow-hidden flex items-center justify-center gap-2 hover:bg-[#5d8f3d] transition-all shadow-lg shadow-[#85bb65]/20"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="font-medium text-lg">Make it Rain</span>
-              <span className="text-2xl">💸</span>
+              <span className="font-medium text-base sm:text-lg">Make it Rain</span>
+              <span className="text-xl sm:text-2xl">💸</span>
             </motion.button>
           </motion.div>
         </div>
