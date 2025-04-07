@@ -269,7 +269,15 @@ const DonationWidget: React.FC<DonationWidgetProps> = ({ recipientAddress, theme
         )
       ]);
 
-      if (typeof status === 'object' && status.value.err) {
+      if (
+        typeof status === 'object' && 
+        status !== null && 
+        'value' in status &&
+        typeof status.value === 'object' &&
+        status.value !== null &&
+        'err' in status.value && 
+        status.value.err
+      ) {
         throw new Error('Transaction failed');
       }
 

@@ -137,13 +137,13 @@ const CryptoTicker: React.FC<CryptoTickerProps> = ({ theme, toggleTheme }) => {
     fetchCoinData();
     
     // Set up periodic fetching
-    const intervalId = setInterval(() => {
+    const intervalId = window.setInterval(() => {
       if (canFetch()) {
         fetchCoinData();
       }
     }, 60000);
     
-    return () => clearInterval(intervalId);
+    return () => window.clearInterval(intervalId);
   }, [fetchCoinData]);
 
   // Close menu when clicking outside
