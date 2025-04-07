@@ -1,0 +1,61 @@
+/* Ticker CSS for smooth animation and infinite scrolling */
+
+.ticker-wrap {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ticker-move {
+    display: inline-flex;
+    white-space: nowrap;
+    animation: ticker 70s linear infinite;
+    will-change: transform;
+    padding-right: 50px;
+    /* Add padding to ensure smooth looping */
+}
+
+.ticker-move.paused {
+    animation-play-state: paused;
+}
+
+@keyframes ticker {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        /* Using translate3d for hardware acceleration */
+        transform: translate3d(-50%, 0, 0);
+    }
+}
+
+
+/* Make sure the text is crisp during animation */
+
+.ticker-move span {
+    font-smooth: always;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* Improve readability for smaller screens */
+
+@media (max-width: 768px) {
+    .ticker-move {
+        animation-duration: 50s;
+        /* Speed up on smaller screens */
+    }
+}
+
+
+/* Adjust animation speed based on zoom level */
+
+@media (min-width: 1200px) {
+    .ticker-move {
+        animation-duration: 90s;
+        /* Slow down on larger screens */
+    }
+}

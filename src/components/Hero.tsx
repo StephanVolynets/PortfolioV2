@@ -1,173 +1,526 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { ArrowDown } from 'lucide-react';
+"use client";
+
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowRight, Github, Linkedin, TrendingUp, Code2, Activity, ChevronUp, ChevronDown, Star, Maximize2, Volume2 } from 'lucide-react';
+import { motion, useScroll, useTransform, useSpring, useMotionValue, useAnimationControls, AnimatePresence } from 'framer-motion';
+import { TypewriterEffect } from './ui/typewriter-effect';
+import { ColorfulText } from './ui/colorful-text';
+import { cn } from '@/lib/utils';
+import { SparklesCore } from './ui/sparkles';
 
 interface HeroProps {
   theme: string;
 }
 
 const Hero: React.FC<HeroProps> = ({ theme }) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [typedText, setTypedText] = useState('');
-  const fullText = "Computer & Data Science Student";
+  const heroRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<HTMLDivElement>(null);
+  const controls = useAnimationControls();
+  const [currentPrice, setCurrentPrice] = useState(84.29);
+  const [priceChange, setPriceChange] = useState(-0.13);
+  const [timeframe, setTimeframe] = useState('1D');
+  const [volume, setVolume] = useState(1243567);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
+  const [tooltipData, setTooltipData] = useState({ price: 0, time: '' });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const [isRaining, setIsRaining] = useState(false);
+  const [moneyBills, setMoneyBills] = useState<Array<{ id: number; x: number; rotation: number }>>([]);
+  const [selectedFilter, setSelectedFilter] = useState('Daily');
+  const [selectedPercentage, setSelectedPercentage] = useState('Top 10');
 
+  // Generate more frequent candlestick data
+  const generateCandlestickData = (count: number) => {
+    let candles = [];
+    let volumes = [];
+    let basePrice = 80;
+    let lastClose = basePrice;
+    let lastVolume = 1000000;
+    
+    for (let i = 0; i < count; i++) {
+      const volatility = 2.5; // Increased volatility
+      const trend = Math.sin(i / 10) * 0.5; // Oscillating trend
+      
+      // Generate more volatile OHLC data
+      const range = Math.random() * volatility;
+      const open = lastClose;
+      const close = open + (Math.random() - 0.5) * range + trend;
+      const high = Math.max(open, close) + Math.random() * range * 1.5;
+      const low = Math.min(open, close) - Math.random() * range * 1.5;
+      
+      lastClose = close;
+      
+      // More volatile volume
+      lastVolume = Math.max(200000, lastVolume + (Math.random() - 0.5) * 500000);
+      
+      const time = new Date();
+      time.setMinutes(time.getMinutes() - (count - i));
+      
+      candles.push({
+        x: (i / (count - 1)) * 100,
+        open,
+        high,
+        low,
+        close,
+        volume: lastVolume,
+        time: time.toLocaleTimeString()
+      });
+      
+      volumes.push({ x: (i / (count - 1)) * 100, y: lastVolume / 2000000 });
+    }
+    
+    return { candles, volumes };
+  };
+
+  const { candles, volumes } = generateCandlestickData(100); // Increased number of candles
+
+  // Render candlestick
+  const renderCandlestick = (candle: any, index: number) => {
+    const candleWidth = 0.8; // Width of each candle
+    const x = candle.x;
+    const isGreen = candle.close >= candle.open;
+    
+    return (
+      <g key={index} opacity={0.8}>
+        {/* Wick */}
+        <line
+          x1={x}
+          y1={100 - candle.high}
+          x2={x}
+          y2={100 - candle.low}
+          stroke={isGreen ? "#85bb65" : "#ff5555"}
+          strokeWidth="0.2"
+        />
+        {/* Body */}
+        <rect
+          x={x - candleWidth / 2}
+          y={100 - Math.max(candle.open, candle.close)}
+          width={candleWidth}
+          height={Math.abs(candle.close - candle.open)}
+          fill={isGreen ? "#85bb65" : "#ff5555"}
+          fillOpacity={0.8}
+        />
+      </g>
+    );
+  };
+
+  // Handle chart hover interactions
+  const handleChartHover = (e: React.MouseEvent) => {
+    if (!chartRef.current) return;
+    
+    const rect = chartRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const closestPoint = candles.reduce((prev, curr) => 
+      Math.abs(curr.x - x) < Math.abs(prev.x - x) ? curr : prev
+    );
+    
+    setTooltipPosition({ 
+      x: (closestPoint.x / 100) * rect.width,
+      y: ((100 - Math.max(closestPoint.open, closestPoint.close)) / 100) * rect.height
+    });
+    setTooltipData({ 
+      price: closestPoint.close,
+      time: closestPoint.time
+    });
+    setShowTooltip(true);
+  };
+
+  // Simulate real-time updates
   useEffect(() => {
-    let i = 0;
-    const typingInterval = setInterval(() => {
-      if (i < fullText.length) {
-        setTypedText(fullText.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(typingInterval);
-      }
-    }, 50);
+    const interval = setInterval(() => {
+      const change = (Math.random() - 0.5) * 0.5;
+      setCurrentPrice(prev => {
+        const newPrice = +(prev + change).toFixed(2);
+        setPriceChange(+(change * 2).toFixed(2));
+        setVolume(prev => Math.max(100000, prev + (Math.random() - 0.5) * 100000));
+        return newPrice;
+      });
+    }, 2000);
 
-    return () => clearInterval(typingInterval);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+    controls.start({
+      pathLength: 1,
+      transition: { duration: 2, ease: "easeInOut" }
+    });
+  }, [controls]);
 
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
+  const timeframes = ['1H', '1D', '1W', '1M', '1Y'];
+  const indicators = ['RSI', 'MACD', 'VOL'];
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const particles: Particle[] = [];
-    const particleCount = 100;
-
-    class Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      constructor() {
-        this.x = Math.random() * (canvas?.width ?? 0);
-        this.y = Math.random() * (canvas?.height ?? 0);
-        this.size = Math.random() * 5 + 1;
-        this.speedX = Math.random() * 3 - 1.5;
-        this.speedY = Math.random() * 3 - 1.5;
-      }
-
-      update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-
-        if (this.size > 0.1) this.size -= 0.02;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = theme === 'dark' ? '#86C232' : '#4a9d4a';
-        ctx.strokeStyle = theme === 'dark' ? '#86C232' : '#4a9d4a';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.fill();
-      }
-    }
-
-    function createParticles() {
-      for (let i = 0; i < particleCount; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function animateParticles() {
-      if (!ctx || !canvas) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-
-        if (particles[i].size <= 0.1) {
-          particles.splice(i, 1);
-          i--;
-        }
-      }
-
-      requestAnimationFrame(animateParticles);
-    }
-
-    createParticles();
-    animateParticles();
-
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [theme]);
+  // Function to generate money bills
+  const generateBills = () => {
+    const newBills = Array.from({ length: 30 }, (_, i) => ({
+      id: Date.now() + i,
+      x: Math.random() * 100,
+      rotation: Math.random() * 360
+    }));
+    setMoneyBills(newBills);
+    setIsRaining(true);
+    setTimeout(() => setIsRaining(false), 3000);
+  };
 
   return (
-    <section className={`min-h-screen flex flex-col justify-center items-center text-center px-4 relative overflow-hidden ${theme === 'dark' ? 'bg-background' : 'bg-gray-100'}`}>
-      <style>{`
-        @keyframes flicker {
-          0%, 18%, 22%, 25%, 53%, 57%, 100% {
-            opacity: 1;
-          }
-          20%, 24%, 55% {
-            opacity: 0.4;
-          }
-        }
+    <div ref={heroRef} className="relative min-h-screen overflow-hidden bg-[#1A1D24]">
+      {/* Money Rain Animation */}
+      <AnimatePresence>
+        {isRaining && moneyBills.map((bill) => (
+          <motion.div
+            key={bill.id}
+            initial={{ 
+              y: -100, 
+              x: `${bill.x}vw`, 
+              rotate: bill.rotation,
+              scale: 1
+            }}
+            animate={{ 
+              y: '120vh',
+              x: [`${bill.x}vw`, `${bill.x + (Math.random() * 20 - 10)}vw`],
+              rotate: [bill.rotation, bill.rotation + (Math.random() * 720 - 360)],
+              scale: [1, Math.random() * 0.5 + 0.75]
+            }}
+            transition={{ 
+              duration: Math.random() * 2 + 4, // Random duration between 4-6 seconds
+              ease: [0.1, 0.4, 0.8, 0.9], // Custom ease for floating effect
+              x: {
+                duration: Math.random() * 2 + 4,
+                repeat: 3,
+                repeatType: "mirror"
+              },
+              rotate: {
+                duration: Math.random() * 2 + 4,
+                repeat: 2,
+                repeatType: "mirror"
+              }
+            }}
+            className="fixed z-50 pointer-events-none"
+          >
+            <motion.div
+              animate={{
+                y: [-5, 5, -5],
+                x: [-5, 5, -5]
+              }}
+              transition={{
+                duration: 2,
+                repeat: Infinity,
+                repeatType: "mirror",
+                ease: "easeInOut"
+              }}
+            >
+              <div 
+                className="w-16 h-8 bg-[#85bb65] rounded shadow-lg relative overflow-hidden"
+                style={{
+                  backgroundImage: 'linear-gradient(90deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 100%)',
+                  border: '1px solid rgba(133, 187, 101, 0.5)'
+                }}
+              >
+                <div className="absolute inset-0 flex items-center justify-center text-white/30 text-xs font-mono">$100</div>
+              </div>
+            </motion.div>
+          </motion.div>
+        ))}
+      </AnimatePresence>
 
-        .flicker {
-          animation: flicker 0.75s infinite alternate;
-        }
-      `}</style>
-      <canvas ref={canvasRef} className="particle-network"></canvas>
-      <div className="max-w-4xl mx-auto z-10">
-        <img
-          src="/1662479258603.jpeg"
-          alt="Stephan Volynets"
-          className="w-48 h-48 rounded-full border-4 border-primary shadow-lg mb-8 mx-auto"
+      {/* Background with stronger blur */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-grid-white/[0.03] bg-[length:16px_16px]" />
+        <motion.div 
+          className="absolute inset-0 bg-gradient-radial from-[#85bb65]/5 via-transparent to-transparent"
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.3, 0.1],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
         />
-        <h1 className={`glitch flicker text-6xl md:text-7xl font-bold mb-6 leading-tight ${theme === 'dark' ? 'text-lime-300' : 'text-lime-800'}`}>
-          Stephan Volynets
-        </h1>
-        <p className="typewriter terminal-prompt text-2xl md:text-3xl mb-8 max-w-3xl mx-auto text-lime-500">
-          {typedText}
-        </p>
-        <div className="flex flex-wrap justify-center gap-4 mt-16 mb-32">
-          <a 
-            href="#about" 
-            className={`bg-transparent border-2 ${
-              theme === 'dark'
-                ? 'border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-background'
-                : 'border-lime-600 text-lime-600 hover:bg-lime-600 hover:text-white'
-            } text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300`}
-          >
-            Discover My Journey
-          </a>
-          <a 
-            href="#contact" 
-            className={`bg-transparent border-2 ${
-              theme === 'dark'
-                ? 'border-lime-400 text-lime-400 hover:bg-lime-400 hover:text-background'
-                : 'border-lime-600 text-lime-600 hover:bg-lime-600 hover:text-white'
-            } text-lg font-semibold py-3 px-6 rounded-full transition-colors duration-300`}
-          >
-            Let's Connect!
-          </a>
-        </div>
-        <a
-          href="#about"
-          className="hover-effect animate-bounce inline-block"
-          aria-label="Scroll to About section"
-        >
-          <ArrowDown size={36} className="text-lime-500" />
-        </a>
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1A1D24]/60 via-transparent to-[#1A1D24]/80" />
       </div>
-    </section>
+
+      <div className="absolute inset-0 flex items-start justify-center px-6 pt-24">
+        <div className="w-full max-w-7xl mx-auto">
+          {/* Reduced size header */}
+          <div className="flex items-center justify-between mb-4 px-4 py-2 bg-[#252832]/80 rounded-lg backdrop-blur-md border border-[#363A45]/50">
+            <div className="flex items-center gap-4">
+              <motion.div
+                className="flex items-center gap-2 text-[#85bb65]"
+              >
+                <TrendingUp className="w-4 h-4" />
+                <span className="font-mono text-sm font-medium">DEV/SKILLS</span>
+                <Star className="w-3 h-3 text-[#85bb65]" />
+              </motion.div>
+              <motion.div 
+                className="flex items-center gap-2 px-3 py-1.5 rounded-md bg-[#2A2E39]/60 border border-[#85bb65]/20"
+              >
+                <span className="text-[#85bb65] font-mono text-sm">${currentPrice}</span>
+                <span className={cn(
+                  "flex items-center gap-1 font-mono text-xs",
+                  priceChange >= 0 ? "text-[#85bb65]" : "text-red-500"
+                )}>
+                  {priceChange >= 0 ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
+                  {Math.abs(priceChange)}%
+                </span>
+              </motion.div>
+            </div>
+            
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 border-r border-[#363A45]/50 pr-4">
+                {indicators.map((indicator) => (
+                  <span
+                    key={indicator}
+                    className="text-xs font-mono text-[#B2B5BE]/50"
+                  >
+                    {indicator}
+                  </span>
+                ))}
+              </div>
+              <div className="flex items-center gap-1">
+                {timeframes.map((tf) => (
+                  <span
+                    key={tf}
+                    className={cn(
+                      "px-2 py-1 text-xs font-mono cursor-pointer transition-colors",
+                      timeframe === tf 
+                        ? "text-white bg-[#85bb65] rounded-md" 
+                        : "text-[#B2B5BE]/50 hover:text-[#B2B5BE]"
+                    )}
+                    onClick={() => setTimeframe(tf)}
+                  >
+                    {tf}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Chart area with name and sparkles */}
+          <div className="relative aspect-[21/9] w-full bg-[#252832]/50 rounded-xl p-8 backdrop-blur-xl border border-[#363A45]/30 shadow-2xl overflow-hidden">
+            <div ref={chartRef} className="absolute inset-6">
+              {/* Enhanced chart background with faint grid numbers */}
+              <div className="absolute inset-0 backdrop-blur-[8px]">
+                <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                  {/* Price axis labels */}
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <g key={`price-${i}`} className="text-[#363A45]/20">
+                      <text
+                        x="0"
+                        y={i * 20}
+                        className="text-[4px] fill-current font-mono"
+                        style={{ transform: 'translateY(1px)' }}
+                      >
+                        ${(100 - i * 20).toFixed(2)}
+                      </text>
+                    </g>
+                  ))}
+
+                  {/* Time axis labels */}
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <g key={`time-${i}`} className="text-[#363A45]/20">
+                      <text
+                        x={i * 25}
+                        y="100"
+                        className="text-[4px] fill-current font-mono"
+                        style={{ transform: 'translateY(4px)' }}
+                      >
+                        {new Date().getHours() - (4 - i)}:00
+                      </text>
+                    </g>
+                  ))}
+
+                  {/* Grid lines */}
+                  {Array.from({ length: 20 }).map((_, i) => (
+                    <g key={`grid-${i}`}>
+                      <line
+                        x1="0"
+                        y1={5 * i}
+                        x2="100"
+                        y2={5 * i}
+                        stroke="#363A45"
+                        strokeWidth="0.1"
+                        strokeDasharray="0.5 1"
+                        opacity="0.1"
+                      />
+                      <line
+                        x1={5 * i}
+                        y1="0"
+                        x2={5 * i}
+                        y2="100"
+                        stroke="#363A45"
+                        strokeWidth="0.1"
+                        strokeDasharray="0.5 1"
+                        opacity="0.1"
+                      />
+                    </g>
+                  ))}
+
+                  {/* Busier volume bars */}
+                  {volumes.map((vol, i) => (
+                    <rect
+                      key={i}
+                      x={vol.x - 0.2}
+                      y={100 - vol.y * 0.3}
+                      width={0.4}
+                      height={vol.y * 0.3}
+                      fill="url(#volumeGradient)"
+                      opacity="0.1"
+                    />
+                  ))}
+
+                  {/* More frequent candlesticks */}
+                  {candles.map((candle, i) => renderCandlestick(candle, i))}
+
+                  <defs>
+                    <linearGradient id="volumeGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#85bb65" />
+                      <stop offset="100%" stopColor="#85bb65" stopOpacity="0.05" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+
+              {/* Content overlay with sparkles */}
+              <div className="absolute inset-0 flex flex-col items-center justify-start pt-24">
+                {/* Name with sparkles - adjusted position */}
+                <div className="relative w-full h-32">
+                  <h1 className="text-7xl font-bold text-center text-white relative z-20 translate-y-8">
+                    Stephan Volynets
+                  </h1>
+                  
+                  {/* Centered gradients with extended lengths */}
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[3px] w-[800px] blur-sm" />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-0 bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[1.5px] w-[800px]" />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[6px] w-[300px] blur-sm" />
+                  <div className="absolute left-1/2 -translate-x-1/2 bottom-[-2px] bg-gradient-to-r from-transparent via-[#85bb65] to-transparent h-[1.5px] w-[300px]" />
+
+                  {/* Sparkles */}
+                  <SparklesCore
+                    background="transparent"
+                    minSize={0.4}
+                    maxSize={1}
+                    particleDensity={1200}
+                    className="w-full h-full"
+                    particleColor="#85bb65"
+                  />
+
+                  {/* Radial Gradient */}
+                  <div className="absolute inset-0 w-full h-full bg-[#252832]/50 [mask-image:radial-gradient(350px_200px_at_top,transparent_20%,white)]"></div>
+                </div>
+
+                {/* Info box with gradient border - adjusted margin */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="relative p-8 rounded-xl overflow-hidden mt-8"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#85bb65]/20 via-[#85bb65]/10 to-[#85bb65]/20 backdrop-blur-sm rounded-xl" />
+                  <div className="absolute inset-[1px] bg-[#252832]/90 rounded-xl" />
+                  
+                  <div className="relative space-y-4 text-2xl font-light">
+                    <p className="text-[#B2B5BE] flex items-center justify-center gap-2">
+                      <span>📚</span> Studying Computer and Data Science @ 
+                      <span className="relative">
+                        Cornell University
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#85bb65]/40"></span>
+                      </span>
+                    </p>
+                    <p className="text-[#B2B5BE] flex items-center justify-center gap-2">
+                      <span>⛓️</span> Consulting Team Member @ 
+                      <span className="relative">
+                        Cornell Blockchain
+                        <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#85bb65]/40"></span>
+                      </span>
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Social links */}
+            <div className="absolute bottom-6 right-6 flex gap-4">
+              {[
+                { href: "https://github.com/StephanVolynets", Icon: Github },
+                { href: "https://linkedin.com/in-stephan-volynets", Icon: Linkedin }
+              ].map(({ href, Icon }) => (
+                <motion.a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-3 rounded-lg bg-[#2A2E39]/60 hover:bg-[#85bb65]/20 border border-[#85bb65]/20 transition-all"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon className="w-5 h-5 text-[#85bb65]" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1 }}
+            className="mt-6 flex justify-center gap-4"
+          >
+            <motion.a
+              href="#projects"
+              className="group px-6 py-3 bg-[#85bb65] rounded-lg overflow-hidden flex items-center gap-2 hover:bg-[#5d8f3d] transition-all shadow-lg shadow-[#85bb65]/20"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Code2 className="w-5 h-5" />
+              <span className="font-medium text-lg">View Projects</span>
+              <ArrowRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+            </motion.a>
+
+            <motion.button
+              onClick={generateBills}
+              className="group px-6 py-3 bg-[#85bb65] rounded-lg overflow-hidden flex items-center gap-2 hover:bg-[#5d8f3d] transition-all shadow-lg shadow-[#85bb65]/20"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <span className="font-medium text-lg">Make it Rain</span>
+              <span className="text-2xl">💸</span>
+            </motion.button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Add default filter state */}
+      const [selectedFilter, setSelectedFilter] = useState('Daily');
+      const [selectedPercentage, setSelectedPercentage] = useState('Top 10');
+
+      {/* Update the filter UI in the header */}
+      <div className="absolute top-0 right-4 flex items-center gap-2 p-2">
+        <select 
+          value={selectedFilter}
+          onChange={(e) => setSelectedFilter(e.target.value)}
+          className="bg-[#252832] text-[#85bb65] border border-[#363A45]/50 rounded px-2 py-1 text-sm"
+        >
+          <option value="Hourly">Hourly</option>
+          <option value="Daily">Daily</option>
+          <option value="Weekly">Weekly</option>
+          <option value="Monthly">Monthly</option>
+        </select>
+        <select
+          value={selectedPercentage}
+          onChange={(e) => setSelectedPercentage(e.target.value)}
+          className="bg-[#252832] text-[#85bb65] border border-[#363A45]/50 rounded px-2 py-1 text-sm"
+        >
+          <option value="Top 10">Top 10</option>
+          <option value="Top 25">Top 25</option>
+          <option value="Top 50">Top 50</option>
+          <option value="All">All</option>
+        </select>
+      </div>
+    </div>
   );
 };
 

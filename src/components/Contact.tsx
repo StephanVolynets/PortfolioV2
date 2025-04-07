@@ -1,195 +1,301 @@
-import React, { useState } from 'react';
-import { Send, Linkedin, Github, Mail } from 'lucide-react';
-import { RoughNotation } from 'react-rough-notation';
+import React, { useState, FormEvent } from 'react';
+import { Send, Mail, Github, Linkedin, Twitter, Loader2 } from 'lucide-react';
+import AnimatedSection from './AnimatedSection';
 
 interface ContactProps {
   theme: string;
 }
 
+const socialLinks = [
+  {
+    name: 'GitHub',
+    icon: Github,
+    url: 'https://github.com/yourusername',
+    color: 'hover:text-gray-800 dark:hover:text-white'
+  },
+  {
+    name: 'LinkedIn',
+    icon: Linkedin,
+    url: 'https://linkedin.com/in/yourusername',
+    color: 'hover:text-blue-600'
+  },
+  {
+    name: 'Twitter',
+    icon: Twitter,
+    url: 'https://twitter.com/yourusername',
+    color: 'hover:text-blue-400'
+  }
+];
+
 const Contact: React.FC<ContactProps> = ({ theme }) => {
-  const [formState, setFormState] = useState({ 
-    name: '', 
-    email: '', 
-    message: '' 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitResult, setSubmitResult] = useState<{
+    success: boolean;
+    message: string;
+  } | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormState({ 
-      ...formState, 
-      [e.target.name]: e.target.value 
-    });
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitResult(null);
 
+    // Simulate form submission
     try {
-      const response = await fetch('https://formspree.io/f/xovqzrvy', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify(formState)
+      // Replace with actual API call in production
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      setSubmitResult({
+        success: true,
+        message: 'Your message has been sent successfully!'
       });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        setFormState({ name: '', email: '', message: '' });
-      } else {
-        setSubmitStatus('error');
-      }
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      console.error('Submission error:', error);
-      setSubmitStatus('error');
+      setSubmitResult({
+        success: false,
+        message: 'Failed to send message. Please try again later.'
+      });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const primaryColor = theme === 'dark' ? '#86C232' : '#4a9d4a';
-
   return (
-    <section id="contact" className={`py-20 ${theme === 'dark' ? 'bg-background' : 'bg-white'}`}>
-      <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold mb-8 text-center text-primary">
-          <RoughNotation type="underline" color={primaryColor} show={true} strokeWidth={3}>
-            Let's Connect!
-          </RoughNotation>
+    <AnimatedSection
+      id="contact"
+      className={`py-24 ${theme === 'dark' ? 'bg-background' : 'bg-white'}`}
+      animation="fadeInUp"
+      threshold={0.1}
+    >
+      <div className="container mx-auto px-6">
+        <h2 className="text-5xl font-bold mb-12 text-center text-primary">
+          Get In Touch
         </h2>
-        <div className="flex flex-col md:flex-row justify-between items-start max-w-4xl mx-auto">
-          <form 
-            onSubmit={handleSubmit} 
-            className="w-full md:w-1/2 mb-8 md:mb-0"
-          >
-            {/* Name Input */}
-            <div className="mb-4">
-              <label htmlFor="name" className={`block text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>Name</label>
-              <input 
-                type="text" 
-                id="name" 
-                name="name" 
-                value={formState.name}
-                onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                  theme === 'dark' ? 'bg-highlight text-text border-accent' : 'bg-white text-gray-800 border-gray-300'
-                }`}
-                required 
-              />
-            </div>
 
-            {/* Email Input */}
-            <div className="mb-4">
-              <label htmlFor="email" className={`block text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>Email</label>
-              <input 
-                type="email" 
-                id="email" 
-                name="email" 
-                value={formState.email}
-                onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                  theme === 'dark' ? 'bg-highlight text-text border-accent' : 'bg-white text-gray-800 border-gray-300'
-                }`}
-                required 
-              />
-            </div>
-
-            {/* Message Input */}
-            <div className="mb-4">
-              <label htmlFor="message" className={`block text-sm font-semibold mb-2 ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}>Message</label>
-              <textarea 
-                id="message" 
-                name="message" 
-                rows={4} 
-                value={formState.message}
-                onChange={handleChange}
-                className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
-                  theme === 'dark' ? 'bg-highlight text-text border-accent' : 'bg-white text-gray-800 border-gray-300'
-                }`}
-                required
-              ></textarea>
-            </div>
-
-            {/* Submit Button with Status Handling */}
-            <button 
-              type="submit" 
-              className="bg-primary text-background py-2 px-4 rounded-md hover:bg-secondary transition-colors flex items-center justify-center hover-effect"
-              disabled={isSubmitting}
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+            <AnimatedSection 
+              className="md:col-span-2 space-y-8" 
+              animation="fadeInLeft"
+              delay={200}
             >
-              {isSubmitting ? (
-                <span className="animate-spin rounded-full h-5 w-5 border-b-2 border-background mr-2"></span>
-              ) : (
-                <Send size={20} className="mr-2" />
-              )}
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-primary flex items-center">
+                  <Mail className="mr-2" /> Contact Information
+                </h3>
+                <p className="text-text mb-6">
+                  Feel free to reach out for collaboration opportunities, job inquiries, or just to say hello!
+                </p>
+                
+                <div className="flex flex-col space-y-4">
+                  <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-full ${theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'}`}>
+                      <Mail className="w-5 h-5 text-primary" />
+                    </div>
+                    <a 
+                      href="mailto:your.email@example.com"
+                      className="text-text hover:text-primary transition-colors"
+                    >
+                      your.email@example.com
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              <div>
+                <h3 className="text-2xl font-semibold mb-4 text-primary">
+                  Connect With Me
+                </h3>
+                <div className="flex space-x-4">
+                  {socialLinks.map((link, index) => {
+                    const Icon = link.icon;
+                    return (
+                      <a
+                        key={index}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`p-3 rounded-full ${
+                          theme === 'dark' ? 'bg-highlight' : 'bg-gray-100'
+                        } ${link.color} transition-all duration-300 hover:scale-110`}
+                        aria-label={link.name}
+                      >
+                        <Icon className="w-5 h-5" />
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+              
+              <AnimatedSection 
+                className="p-6 rounded-lg shadow-lg bg-primary text-white"
+                animation="fadeInUp"
+                delay={600}
+              >
+                <h4 className="text-xl font-semibold mb-2">Available for Opportunities</h4>
+                <p className="mb-4">
+                  Currently looking for opportunities in blockchain development and web3 technologies.
+                </p>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse mr-2"></div>
+                  <span>Open to work</span>
+                </div>
+              </AnimatedSection>
+            </AnimatedSection>
 
-            {/* Submission Status Messages */}
-            {submitStatus === 'success' && (
-              <p className="text-green-500 mt-4">
-                Message sent successfully! I'll get back to you soon.
-              </p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="text-red-500 mt-4">
-                Oops! Something went wrong. Please try again.
-              </p>
-            )}
-          </form>
-
-          {/* Existing Contact Links */}
-          <div className="w-full md:w-1/3">
-            <h3 className={`text-2xl font-semibold mb-4 text-primary`}>Connect with me</h3>
-            <div className="space-y-4">
-              <a 
-                href="https://www.linkedin.com/in/stephan-volynets/" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
-              >
-                <Linkedin size={24} className="mr-2" /> 
-                linkedin.com/in/stephan-volynets/
-              </a>
-              <a 
-                href="https://github.com/stephanvolynets" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
-              >
-                <Github size={24} className="mr-2" /> 
-                GitHub.com/stephanvolynets
-              </a>
-              <a 
-                href="mailto:svv6@cornell.edu" 
-                className={`flex items-center hover:text-primary transition-colors ${theme === 'dark' ? 'text-text' : 'text-gray-800'}`}
-              >
-                <Mail size={24} className="mr-2" /> 
-                svv6@cornell.edu
-              </a>
-            </div>
+            <AnimatedSection 
+              className="md:col-span-3" 
+              animation="fadeInRight"
+              delay={300}
+            >
+              <div className={`p-8 rounded-lg shadow-lg ${
+                theme === 'dark' ? 'bg-highlight' : 'bg-gray-50'
+              }`}>
+                <h3 className="text-2xl font-semibold mb-6 text-primary">
+                  Send Me a Message
+                </h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                      <label 
+                        htmlFor="name" 
+                        className="block text-text font-medium mb-2"
+                      >
+                        Your Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        className={`w-full p-3 rounded-md border ${
+                          theme === 'dark' 
+                            ? 'bg-background border-gray-700 text-text focus:border-primary' 
+                            : 'bg-white border-gray-300 text-gray-800 focus:border-primary'
+                        } focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors`}
+                      />
+                    </div>
+                    <div>
+                      <label 
+                        htmlFor="email" 
+                        className="block text-text font-medium mb-2"
+                      >
+                        Your Email
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        className={`w-full p-3 rounded-md border ${
+                          theme === 'dark' 
+                            ? 'bg-background border-gray-700 text-text focus:border-primary' 
+                            : 'bg-white border-gray-300 text-gray-800 focus:border-primary'
+                        } focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors`}
+                      />
+                    </div>
+                  </div>
+                  
+                  <div>
+                    <label 
+                      htmlFor="subject" 
+                      className="block text-text font-medium mb-2"
+                    >
+                      Subject
+                    </label>
+                    <input
+                      type="text"
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
+                      onChange={handleChange}
+                      required
+                      className={`w-full p-3 rounded-md border ${
+                        theme === 'dark' 
+                          ? 'bg-background border-gray-700 text-text focus:border-primary' 
+                          : 'bg-white border-gray-300 text-gray-800 focus:border-primary'
+                      } focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors`}
+                    />
+                  </div>
+                  
+                  <div>
+                    <label 
+                      htmlFor="message" 
+                      className="block text-text font-medium mb-2"
+                    >
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows={5}
+                      className={`w-full p-3 rounded-md border ${
+                        theme === 'dark' 
+                          ? 'bg-background border-gray-700 text-text focus:border-primary' 
+                          : 'bg-white border-gray-300 text-gray-800 focus:border-primary'
+                      } focus:outline-none focus:ring-2 focus:ring-primary/20 transition-colors resize-none`}
+                    />
+                  </div>
+                  
+                  <div>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`flex items-center justify-center w-full p-3 rounded-md bg-primary text-white font-medium transition-all hover:bg-primary/90 ${
+                        isSubmitting ? 'opacity-80 cursor-not-allowed' : ''
+                      }`}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </button>
+                  </div>
+                  
+                  {submitResult && (
+                    <div
+                      className={`p-4 rounded-md ${
+                        submitResult.success
+                          ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                          : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                      }`}
+                    >
+                      {submitResult.message}
+                    </div>
+                  )}
+                </form>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
-
-        {/* Formspree Attribution */}
-        <div className="text-center mt-4 text-md text-gray-500">
-          <span>
-            Powered by{' '}
-            <a 
-              href="https://formspree.io" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="underline hover:text-primary transition-colors"
-            >
-              Formspree
-            </a>
-          </span>
-        </div>
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 

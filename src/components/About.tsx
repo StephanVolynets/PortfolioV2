@@ -1,21 +1,21 @@
 import React, { useRef } from "react";
-import { RoughNotation, RoughNotationGroup } from "react-rough-notation";
+import { RoughNotation } from "react-rough-notation";
+import AnimatedSection from './AnimatedSection';
 
 interface AboutProps {
   theme: string;
 }
 
 const About: React.FC<AboutProps> = ({ theme }) => {
-  const sectionRef = useRef<HTMLElement>(null);
-
   const underlineColor = theme === "dark" ? "#86C232" : "#4a9d4a";
   const highlightColor = theme === "dark" ? "rgba(134, 194, 50, 0.2)" : "rgba(74, 157, 74, 0.2)";
 
   return (
-    <section
+    <AnimatedSection
       id="about"
-      ref={sectionRef}
       className={`py-24 ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}
+      animation="fadeInUp"
+      threshold={0.2}
     >
       <div className="container mx-auto px-6">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">
@@ -29,133 +29,58 @@ const About: React.FC<AboutProps> = ({ theme }) => {
             About Me
           </RoughNotation>
         </h2>
-        <div className="max-w-4xl mx-auto">
-          <RoughNotationGroup show={true}>
-            <p className="text-xl mb-8 leading-relaxed">
-              As a senior at{" "}
+        
+        <AnimatedSection className="max-w-4xl mx-auto" animation="fadeInUp" delay={200}>
+          <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
+            Hello! I'm Stephan, a passionate <strong className="text-primary">Computer Science</strong> student at Cornell University with a focus on software development and blockchain technology.
+          </p>
+          
+          <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
+            My journey in programming began when I was 14, tinkering with code to build interactive websites. This early fascination evolved into a deep interest in creating innovative solutions to real-world problems.
+          </p>
+          
+          <div className="bg-code p-6 rounded-lg mb-8 overflow-x-auto">
+            <pre className="text-primary">
+              <code>
+                {`const stephan = {
+  education: "Computer Science @ Cornell University",
+  interests: ["Web Development", "Blockchain", "AI", "Data Science"],
+  technologies: {
+    frontend: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
+    backend: ["Node.js", "Express", "Python", "Java"],
+    databases: ["MongoDB", "SQL", "Firebase"],
+    blockchain: ["Solana", "Ethereum", "Smart Contracts"]
+  },
+  currentlyLearning: "Advanced Distributed Systems",
+  funFact: "I've written over 100,000 lines of code since I started programming!"
+};`}
+              </code>
+            </pre>
+          </div>
+          
+          <AnimatedSection animation="fadeInRight" delay={400}>
+            <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
+              I'm particularly excited about the intersection of 
               <RoughNotation
                 type="highlight"
                 color={highlightColor}
-                animationDelay={200}
-                animationDuration={800}
-                strokeWidth={3}
-              >
-                Cornell University
-              </RoughNotation>{" "}
-              pursuing a Bachelor of Arts in{" "}
-              <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={200}
+                show={true}
                 animationDuration={1200}
-                strokeWidth={3}
-                style={{ display: "inline-block" }}
               >
-                Computer
-              </RoughNotation>{" "}
-              and
-              <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={200}
-                animationDuration={1200}
-                strokeWidth={3}
-                style={{ display: "inline-block" }}
-              >
-                Information Sciences
+                <span className="text-primary"> blockchain technology </span>
               </RoughNotation>
-              , I specialize in blockchain technologies, development, and data driven solutions. My academic and professional experiences have allowed me to apply my expertise in{" "}
-              <RoughNotation
-                type="highlight"
-                color={highlightColor}
-                animationDelay={400}
-                animationDuration={800}
-                strokeWidth={3}
-              >
-                PHP
-              </RoughNotation>
-              ,{" "}
-              <RoughNotation
-                type="highlight"
-                color={highlightColor}
-                animationDelay={500}
-                animationDuration={800}
-                strokeWidth={3}
-              >
-                React.js
-              </RoughNotation>
-              ,{" "}
-              <RoughNotation
-                type="highlight"
-                color={highlightColor}
-                animationDelay={600}
-                animationDuration={800}
-                strokeWidth={3}
-              >
-                TypeScript
-              </RoughNotation>
-              , and collaborative software development to create impactful, user centric applications.
+              and everyday applications. My goal is to develop solutions that make decentralized systems more accessible and user-friendly.
             </p>
-            <p className="text-xl mb-8 leading-relaxed">
-              I have actively contributed to the blockchain ecosystem through my role in{" "}
-              <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={300}
-                animationDuration={1200}
-                strokeWidth={3}
-              >
-                Cornell Blockchain
-              </RoughNotation>
-              , where I collaborate on innovative projects such as{" "}
-              <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={300}
-                animationDuration={1000}
-                strokeWidth={3}
-              >
-                Silicore.io
-              </RoughNotation>
-              , which was showcased at prestigious events like the Meridian Conference. These experiences have honed my ability to translate complex technical concepts into real world applications that empower users.
+          </AnimatedSection>
+          
+          <AnimatedSection animation="fadeInLeft" delay={600}>
+            <p className={`text-lg ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
+              When I'm not coding, you can find me exploring hiking trails, playing chess, or experimenting with new cooking recipes. I believe in a balanced approach to life and work, which helps me maintain creativity and focus in my projects.
             </p>
-            <p className="text-xl leading-relaxed">
-              Fluent in{" "}
-              <RoughNotation
-                type="underline"
-                color={underlineColor}
-                animationDelay={400}
-                animationDuration={1200}
-                strokeWidth={3}
-              >
-                English and Russian
-              </RoughNotation>
-              , I bring a global perspective to problem solving, ensuring inclusivity and impact in every project I undertake. My dedication to technology is matched by a commitment to advancing understanding within{" "}
-              <RoughNotation
-                type="highlight"
-                color={highlightColor}
-                animationDelay={500}
-                animationDuration={800}
-                strokeWidth={3}
-              >
-                blockchain
-              </RoughNotation>
-              ,{" "}
-              <RoughNotation
-                type="highlight"
-                color={highlightColor}
-                animationDelay={600}
-                animationDuration={800}
-                strokeWidth={3}
-              >
-                fintech
-              </RoughNotation>
-              , and beyond.
-            </p>
-          </RoughNotationGroup>
-        </div>
+          </AnimatedSection>
+        </AnimatedSection>
       </div>
-    </section>
+    </AnimatedSection>
   );
 };
 

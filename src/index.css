@@ -1,314 +1,364 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
-  --color-background: #222629;
-  --color-text: #ffffff;
-  --color-primary: #86C232;
-  --color-secondary: #61892F;
-  --color-accent: #6B6E70;
-  --color-highlight: #474B4F;
+    --color-background: #222629;
+    --color-text: #ffffff;
+    --color-primary: #86C232;
+    --color-secondary: #61892F;
+    --color-accent: #6B6E70;
+    --color-highlight: #474B4F;
 }
 
+
 /* Add smooth scrolling for the entire page */
+
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body.dark {
-  background-color: var(--color-background);
-  color: var(--color-text);
+    background-color: var(--color-background);
+    color: var(--color-text);
 }
 
 body.light {
-  background-color: #f0f0f0;
-  color: #333333;
+    background-color: #f0f0f0;
+    color: #333333;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
 }
 
 .custom-cursor {
-  width: 20px;
-  height: 20px;
-  border: 2px solid var(--color-primary);
-  border-radius: 50%;
-  position: fixed;
-  pointer-events: none;
-  z-index: 9999;
-  transition: all 0.1s ease;
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transition: all 0.1s ease;
+    transform: translate(-50%, -50%);
+    mix-blend-mode: difference;
 }
 
 .hover-effect {
-  transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .hover-effect:hover {
-  color: var(--color-primary);
-  transform: translateY(-2px);
+    color: var(--color-primary);
+    transform: translateY(-2px);
 }
 
+
 /* Enhanced section fade animations */
+
 .section-fade {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .section-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .fade-in {
-  animation: fadeIn 0.6s ease forwards;
+    animation: fadeIn 0.6s ease forwards;
 }
 
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .nav-link {
-  position: relative;
-  overflow: hidden;
+    position: relative;
+    overflow: hidden;
 }
 
 .nav-link::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--color-primary);
-  transform: scaleX(0);
-  transition: transform 0.3s ease;
-  transform-origin: right;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: var(--color-primary);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: right;
 }
 
 .nav-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .particle-network {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
 }
 
+
 /* Enhanced typewriter effect */
+
 .typewriter {
-  overflow: hidden;
-  border-right: .15em solid var(--color-primary);
-  white-space: nowrap;
-  margin: 0 auto;
-  letter-spacing: .15em;
-  animation: 
-    typing 3.5s steps(40, end),
-    blink-caret .75s step-end infinite;
+    overflow: hidden;
+    border-right: .15em solid var(--color-primary);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+    from {
+        width: 0
+    }
+    to {
+        width: 100%
+    }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: var(--color-primary) }
+    from,
+    to {
+        border-color: transparent
+    }
+    50% {
+        border-color: var(--color-primary)
+    }
 }
 
+
 /* Enhanced glitch effect */
+
 .glitch {
-  position: relative;
-  font-size: 4rem;
-  font-weight: bold;
-  text-shadow: 0.05em 0 0 var(--color-primary),
-               -0.025em -0.05em 0 var(--color-secondary),
-               0.025em 0.05em 0 var(--color-accent);
-  animation: glitch 3s infinite;
+    position: relative;
+    font-size: 4rem;
+    font-weight: bold;
+    text-shadow: 0.05em 0 0 var(--color-primary), -0.025em -0.05em 0 var(--color-secondary), 0.025em 0.05em 0 var(--color-accent);
+    animation: glitch 3s infinite;
 }
 
 @keyframes glitch {
-  0% {
-    text-shadow: 0.05em 0 0 var(--color-primary),
-                 -0.025em -0.05em 0 var(--color-secondary),
-                 0.025em 0.05em 0 var(--color-accent);
-  }
-  14% {
-    text-shadow: 0.05em 0 0 var(--color-primary),
-                 -0.025em -0.05em 0 var(--color-secondary),
-                 0.025em 0.05em 0 var(--color-accent);
-  }
-  15% {
-    text-shadow: -0.05em -0.025em 0 var(--color-primary),
-                 0.025em 0.025em 0 var(--color-secondary),
-                 -0.05em -0.05em 0 var(--color-accent);
-  }
-  49% {
-    text-shadow: -0.05em -0.025em 0 var(--color-primary),
-                 0.025em 0.025em 0 var(--color-secondary),
-                 -0.05em -0.05em 0 var(--color-accent);
-  }
-  50% {
-    text-shadow: 0.025em 0.05em 0 var(--color-primary),
-                 0.05em 0 0 var(--color-secondary),
-                 0 -0.05em 0 var(--color-accent);
-  }
-  99% {
-    text-shadow: 0.025em 0.05em 0 var(--color-primary),
-                 0.05em 0 0 var(--color-secondary),
-                 0 -0.05em 0 var(--color-accent);
-  }
-  100% {
-    text-shadow: -0.025em 0 0 var(--color-primary),
-                 -0.025em -0.025em 0 var(--color-secondary),
-                 -0.025em -0.05em 0 var(--color-accent);
-  }
+    0% {
+        text-shadow: 0.05em 0 0 var(--color-primary), -0.025em -0.05em 0 var(--color-secondary), 0.025em 0.05em 0 var(--color-accent);
+    }
+    14% {
+        text-shadow: 0.05em 0 0 var(--color-primary), -0.025em -0.05em 0 var(--color-secondary), 0.025em 0.05em 0 var(--color-accent);
+    }
+    15% {
+        text-shadow: -0.05em -0.025em 0 var(--color-primary), 0.025em 0.025em 0 var(--color-secondary), -0.05em -0.05em 0 var(--color-accent);
+    }
+    49% {
+        text-shadow: -0.05em -0.025em 0 var(--color-primary), 0.025em 0.025em 0 var(--color-secondary), -0.05em -0.05em 0 var(--color-accent);
+    }
+    50% {
+        text-shadow: 0.025em 0.05em 0 var(--color-primary), 0.05em 0 0 var(--color-secondary), 0 -0.05em 0 var(--color-accent);
+    }
+    99% {
+        text-shadow: 0.025em 0.05em 0 var(--color-primary), 0.05em 0 0 var(--color-secondary), 0 -0.05em 0 var(--color-accent);
+    }
+    100% {
+        text-shadow: -0.025em 0 0 var(--color-primary), -0.025em -0.025em 0 var(--color-secondary), -0.025em -0.05em 0 var(--color-accent);
+    }
 }
 
 .terminal-prompt::before {
-  content: '>';
-  color: var(--color-primary);
-  margin-right: 0.5rem;
-  animation: blink 1s step-end infinite;
+    content: '>';
+    color: var(--color-primary);
+    margin-right: 0.5rem;
+    animation: blink 1s step-end infinite;
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+    50% {
+        opacity: 0;
+    }
 }
 
+
 /* Code snippet styling */
+
 .code-snippet {
-  font-family: 'Fira Code', monospace;
-  background-color: var(--color-highlight);
-  padding: 1rem;
-  border-radius: 0.5rem;
-  overflow-x: auto;
+    font-family: 'Fira Code', monospace;
+    background-color: var(--color-highlight);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    overflow-x: auto;
 }
 
 .code-snippet pre {
-  margin: 0;
+    margin: 0;
 }
 
 .code-snippet code {
-  color: var(--color-text);
+    color: var(--color-text);
 }
 
+
 /* Syntax highlighting */
-.syntax-keyword { color: #ff79c6; }
-.syntax-string { color: #f1fa8c; }
-.syntax-number { color: #bd93f9; }
-.syntax-function { color: #50fa7b; }
-.syntax-comment { color: #6272a4; }
+
+.syntax-keyword {
+    color: #ff79c6;
+}
+
+.syntax-string {
+    color: #f1fa8c;
+}
+
+.syntax-number {
+    color: #bd93f9;
+}
+
+.syntax-function {
+    color: #50fa7b;
+}
+
+.syntax-comment {
+    color: #6272a4;
+}
+
 
 /* Loading animation */
+
 .terminal-loading::after {
-  content: '...';
-  animation: loading 1.5s steps(3, end) infinite;
+    content: '...';
+    animation: loading 1.5s steps(3, end) infinite;
 }
 
 @keyframes loading {
-  to { width: 1.5em; }
+    to {
+        width: 1.5em;
+    }
 }
+
 
 /* Light mode styles */
+
 .light {
-  --color-background: #f0f0f0;
-  --color-text: #333333;
-  --color-primary: #4a9d4a;
-  --color-secondary: #3d7a3d;
-  --color-accent: #5a5a5a;
-  --color-highlight: #e0e0e0;
+    --color-background: #f0f0f0;
+    --color-text: #333333;
+    --color-primary: #4a9d4a;
+    --color-secondary: #3d7a3d;
+    --color-accent: #5a5a5a;
+    --color-highlight: #e0e0e0;
 }
 
+
 /* Light mode syntax highlighting */
-.light .syntax-keyword { color: #d73a49; }
-.light .syntax-string { color: #032f62; }
-.light .syntax-number { color: #005cc5; }
-.light .syntax-function { color: #6f42c1; }
-.light .syntax-comment { color: #6a737d; }
+
+.light .syntax-keyword {
+    color: #d73a49;
+}
+
+.light .syntax-string {
+    color: #032f62;
+}
+
+.light .syntax-number {
+    color: #005cc5;
+}
+
+.light .syntax-function {
+    color: #6f42c1;
+}
+
+.light .syntax-comment {
+    color: #6a737d;
+}
+
 
 /* Theme switch styling */
+
 .theme-switch {
-  width: 60px;
-  height: 30px;
-  background-color: var(--color-highlight);
-  border-radius: 15px;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    width: 60px;
+    height: 30px;
+    background-color: var(--color-highlight);
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .theme-switch::after {
-  content: '🌙';
-  font-size: 20px;
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 26px;
-  height: 26px;
-  background-color: var(--color-primary);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease;
+    content: '🌙';
+    font-size: 20px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 26px;
+    height: 26px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
 .light .theme-switch::after {
-  content: '☀️';
-  transform: translateX(30px);
+    content: '☀️';
+    transform: translateX(30px);
 }
+
 
 /* Form elements styling */
-.dark input, 
-.dark textarea, 
+
+.dark input,
+.dark textarea,
 .dark select {
-  color: var(--color-text);
-  background-color: var(--color-highlight);
-  border-color: var(--color-accent);
+    color: var(--color-text);
+    background-color: var(--color-highlight);
+    border-color: var(--color-accent);
 }
 
-.light input, 
-.light textarea, 
+.light input,
+.light textarea,
 .light select {
-  color: #333333;
-  background-color: #ffffff;
-  border-color: #cccccc;
+    color: #333333;
+    background-color: #ffffff;
+    border-color: #cccccc;
 }
+
 
 /* Focus states */
+
 .dark button:focus,
 .dark a:focus,
 .dark input:focus,
 .dark textarea:focus,
 .dark select:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
 .light button:focus,
@@ -316,55 +366,63 @@ h1, h2, h3, h4, h5, h6 {
 .light input:focus,
 .light textarea:focus,
 .light select:focus {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
 }
 
+
 /* Link styling */
+
 .dark a {
-  color: var(--color-primary);
+    color: var(--color-primary);
 }
 
 .light a {
-  color: var(--color-secondary);
+    color: var(--color-secondary);
 }
 
+
 /* Disabled state styling */
+
 .dark button:disabled,
 .dark input:disabled,
 .dark textarea:disabled,
 .dark select:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
 .light button:disabled,
 .light input:disabled,
 .light textarea:disabled,
 .light select:disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
+
 /* Text colors for light mode */
+
 .light .text-text {
-  color: #333333;
+    color: #333333;
 }
 
 .light .bg-highlight {
-  background-color: #e0e0e0;
+    background-color: #e0e0e0;
 }
 
+
 /* Add 3D transform styles */
+
 .transform-3d {
-  transform-style: preserve-3d;
-  perspective: 1000px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
 }
 
 .rotate-3d {
-  transition: transform 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .rotate-3d:hover {
-  transform: rotateX(10deg) rotateY(10deg);
+    transform: rotateX(10deg) rotateY(10deg);
 }

@@ -1,48 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
+import VerticalNav from './components/VerticalNav';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import CustomCursor from './components/CustomCursor';
 import { ArrowUp } from 'lucide-react';
 import CV from './components/CV';
+import { WalletContextProvider } from './components/WalletProvider';
+import DonationWidget from './components/DonationWidget';
+import { Toaster } from 'sonner';
 // import Head from 'next/head';
 
 function App() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState(() => {
+    // Check localStorage first
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+      return savedTheme;
+    }
+    
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    
+    return 'light';
+  });
+  
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    document.querySelectorAll('.section-fade').forEach((el) => observer.observe(el));
-
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 300);
     };
 
     window.addEventListener('scroll', handleScroll);
+    
+    // Listen for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
 
     return () => {
-      observer.disconnect();
       window.removeEventListener('scroll', handleScroll);
+      mediaQuery.removeEventListener('change', handleChange);
     };
   }, []);
 
   const toggleTheme = () => {
-    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme);
   };
 
   useEffect(() => {
@@ -57,19 +73,38 @@ function App() {
   };
 
   return (
-    <>
-  
+    <WalletContextProvider>
       <div className={`min-h-screen transition-colors duration-300 ${theme}`}>
-        <CustomCursor />
         <Header theme={theme} toggleTheme={toggleTheme} />
-        <main>
-          <Hero theme={theme} />
-          <About theme={theme} />
-          <Skills theme={theme} />
-          <CV theme={theme} />
-          <Projects theme={theme} />
-          <Contact theme={theme} />
-        </main>
+        <div className="flex">
+          <VerticalNav theme={theme} />
+          <main className="flex-1 lg:ml-64">
+            <section id="hero">
+              <Hero theme={theme} />
+            </section>
+            <section id="about">
+              <About theme={theme} />
+            </section>
+            <section id="skills">
+              <Skills theme={theme} />
+            </section>
+            <section id="cv">
+              <CV theme={theme} />
+            </section>
+            <section id="projects">
+              <Projects theme={theme} />
+            </section>
+            <section id="contact">
+              <Contact theme={theme} />
+            </section>
+            <section id="donation" className="py-16">
+              <DonationWidget 
+                recipientAddress="4NicjQQ4rpb6xy1zfuyGNgYzKs5jydvtnEctxpTNMWVX" 
+                theme={theme} 
+              />
+            </section>
+          </main>
+        </div>
         <Footer theme={theme} />
         {showScrollTop && (
           <button
@@ -80,8 +115,9 @@ function App() {
             <ArrowUp size={24} />
           </button>
         )}
+        <Toaster position="bottom-right" />
       </div>
-    </>
+    </WalletContextProvider>
   );
 }
 
