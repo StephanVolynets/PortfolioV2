@@ -4,13 +4,19 @@
 ### Welcome to my personal portfolio! Built from scratch and meant to showcases my skills, education, and experience in the field of computer science and beyond. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
 
 <p>
-   <img src="https://github.com/user-attachments/assets/eca1aa74-527a-4bf0-b5d9-292d75508a26" alt="Desktop Browser" style="width:100% height="700">
+   <img src="https://github.com/user-attachments/assets/d98bc0c5-108a-422c-9674-a9e0ad203038" alt="Desktop Browser" style="width:100% height="700">
         <br>
 
 </p>
 
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/22779997-0986-40cf-b5fd-f65d775bf0ac" alt="Desktop Browser"  width="300">
+    <img src="https://github.com/user-attachments/assets/0b221bdd-a46d-4926-b429-f29e12a51fe1" alt="Desktop Browser"  width="300">
+     
+ </p>
+
+
+ <p align="center">
+    <img src="https://github.com/user-attachments/assets/853661c2-9dd6-4ffb-b26b-70d431f01913" alt="Desktop Browser"  width="300">
      
  </p>
 
