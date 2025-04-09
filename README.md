@@ -13,13 +13,13 @@
 </p>
 
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/0b221bdd-a46d-4926-b429-f29e12a51fe1" alt="Desktop Browser"  width="300">
+    <img src="https://github.com/user-attachments/assets/0b221bdd-a46d-4926-b429-f29e12a51fe1" alt="Desktop Browser"  style="width:100% height="700">
      
  </p>
 
 
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/853661c2-9dd6-4ffb-b26b-70d431f01913" alt="Desktop Browser"  width="300">
+    <img src="https://github.com/user-attachments/assets/853661c2-9dd6-4ffb-b26b-70d431f01913" alt="Desktop Browser"  style="width:100% height="700">
      
  </p>
 
