@@ -1,7 +1,10 @@
-# Personal Portfolio
-##### Deploy Status: [![Netlify Status](https://api.netlify.com/api/v1/badges/73d5f701-8479-41d2-90a2-78a5976fbf38/deploy-status)](https://app.netlify.com/sites/stephan-volynets/deploys)
 
-### Welcome to my personal portfolio! Built from scratch and meant to showcases my skills, education, and experience in the field of computer science and beyond. It serves as a digital resume, highlighting my projects, technical skills, and professional background.
+# Portfolio with Blockchain Integration
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/73d5f701-8479-41d2-90a2-78a5976fbf38/deploy-status)](https://app.netlify.com/sites/stephan-volynets/deploys)
+
+A modern portfolio website showcasing both traditional web development skills and blockchain implementations. The site features a responsive design, smooth animations, and interactive Web3 components including a full-featured token swap interface powered by the 0x Protocol.
+
 
 <p>
    <img src="https://github.com/user-attachments/assets/d98bc0c5-108a-422c-9674-a9e0ad203038" alt="Desktop Browser" style="width:100% height="700">
@@ -20,75 +23,140 @@
      
  </p>
 
-
 ## Table of Contents
 
-- [Personal Portfolio](#personal-portfolio)
+- [Portfolio with Blockchain Integration](#portfolio-with-blockchain-integration)
   - [Table of Contents](#table-of-contents)
-  - [Technologies Used](#technologies-used)
   - [Features](#features)
+  - [Technologies Used](#technologies-used)
+    - [Frontend](#frontend)
+    - [Blockchain/Web3](#blockchainweb3)
+  - [Blockchain Components](#blockchain-components)
+    - [Token Swap Interface](#token-swap-interface)
+    - [Wallet Connection](#wallet-connection)
   - [Installation](#installation)
-  - [Usage](#usage)
-  - [Contributing](#contributing)
+  - [Running Locally](#running-locally)
+  - [Project Structure](#project-structure)
+  - [External APIs](#external-apis)
   - [License](#license)
-
-## Technologies Used
-
-This portfolio is built using the following technologies:
-
-- **Frontend:**
-  - **React.js**: A JavaScript library for building user interfaces.
-  - **Next.js**: A React framework for server-side rendering and static site generation.
-  - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
-  - **Material-UI**: A popular React UI framework that provides pre-designed components.
-  - **Tailwind CSS**: A utility-first CSS framework for styling.
-
 
 ## Features
 
-- **Responsive Design**: The portfolio is designed to be mobile-friendly and responsive across various devices.
-- **Dynamic Content**: Sections for education, technical skills, and experience are dynamically rendered.
-- **Smooth Scrolling**: Smooth scrolling effects enhance user experience when navigating through sections.
-- **Custom Cursor**: A custom cursor effect adds a unique touch to the user interface.
+- **Responsive Design**: Mobile-friendly interface that adapts to all screen sizes
+- **Animated UI**: Smooth transitions and animations powered by Framer Motion
+- **Web3 Integration**: Connect multiple wallets including MetaMask, Phantom, and Coinbase Wallet
+- **Token Swap**: Execute token swaps on Base network using the 0x Protocol
+- **Dynamic Content**: Sections for education, technical skills, and experience are dynamically rendered
+- **Dark Mode**: Sleek dark-themed UI for optimal viewing
+
+## Technologies Used
+
+### Frontend
+- **React**: Component-based UI development
+- **TypeScript**: Type-safe JavaScript for robust code
+- **Vite**: Fast build tool and development server
+- **Tailwind CSS**: Utility-first CSS framework
+- **Framer Motion**: Animation library for smooth transitions
+
+### Blockchain/Web3
+- **0x Protocol API**: Decentralized exchange aggregator for best swap rates
+- **Web3 Providers**: Support for multiple wallet providers
+- **Ethereum/Base**: Smart contract interactions on Base network
+- **Solana Adapter**: Integration with Solana blockchain
+
+## Blockchain Components
+
+### Token Swap Interface
+
+The portfolio includes a fully-functional DEX interface that allows users to:
+
+- Connect their preferred Web3 wallet
+- Select from a list of popular tokens on Base network
+- Get real-time price quotes with gas estimates
+- Configure slippage tolerance and transaction settings
+- Execute token swaps with transaction confirmation
+
+The swap interface leverages the 0x Protocol API to aggregate liquidity from multiple DEXes, ensuring users get the best possible rates for their swaps.
+
+### Wallet Connection
+
+The application includes a custom wallet selection modal that:
+
+- Detects installed wallet browser extensions
+- Supports multiple wallet providers (MetaMask, Phantom, Coinbase Wallet)
+- Clearly displays connection status and connected wallet address
+- Enables disconnecting and switching between wallets
+- Handles connection errors gracefully
 
 ## Installation
 
-To run this project locally, follow these steps:
-
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   git clone https://github.com/yourusername/PortfolioV2-1.git
+   cd PortfolioV2-1
    ```
 
-2. Navigate to the project directory:
-   ```bash
-   cd your-repo-name
-   ```
-
-3. Install the dependencies:
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-4. Start the development server:
-   ```bash
-   npm run dev
+3. Set up environment variables:
+   Create a `.env` file in the root directory with the following variables:
+   ```
+   VITE_ZRX_API_KEY=your_0x_api_key
    ```
 
-5. Open your browser and navigate to `http://localhost:3000`.
+## Running Locally
 
-## Usage
+```bash
+# Development mode with hot reload
+npm run dev
 
-Feel free to explore the portfolio. You can navigate through different sections to view my education, skills, and experience. The projects section links to my GitHub portfolio for more detailed information about my work.
+# Build for production
+npm run build
 
-## Contributing
+# Preview production build
+npm run preview
 
-Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.
+# Deploy to Netlify
+npm run deploy
+```
+
+Access the development server at `http://localhost:5173`
+
+## Project Structure
+
+```
+PortfolioV2-1/
+├── public/              # Static assets
+├── src/
+│   ├── components/      # React components
+│   │   ├── Swap/        # Token swap components
+│   │   │   ├── SwapInterface.tsx   # Main swap UI
+│   │   │   ├── TokenSelector.tsx   # Token selection modal
+│   │   │   └── SwapSettings.tsx    # Slippage settings
+│   ├── lib/
+│   │   ├── swapService.ts   # 0x API integration
+│   │   └── tokens.ts        # Token definitions
+│   ├── App.tsx          # Main application component
+│   └── index.tsx        # Application entry point
+├── .env                 # Environment variables (create this file)
+├── package.json         # Project dependencies
+├── tsconfig.json        # TypeScript configuration
+└── vite.config.ts       # Vite configuration
+```
+
+## External APIs
+
+- **0x Protocol API**: Used for token swaps (https://docs.0x.org/0x-swap-api/introduction)
+- **Base Network**: Ethereum L2 for blockchain transactions
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
 ---
 
-Thank you for visiting my portfolio!
+# Designed and developed with ❤️
+
