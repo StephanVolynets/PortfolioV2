@@ -10,19 +10,19 @@ const socialLinks = [
   {
     name: 'GitHub',
     icon: Github,
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/StephanVolynets',
     color: 'hover:text-gray-800 dark:hover:text-white'
   },
   {
     name: 'LinkedIn',
     icon: Linkedin,
-    url: 'https://linkedin.com/in/yourusername',
+    url: 'https://www.linkedin.com/in/stephan-volynets/',
     color: 'hover:text-blue-600'
   },
   {
     name: 'Twitter',
     icon: Twitter,
-    url: 'https://twitter.com/yourusername',
+    url: 'https://twitter.com/mhsavage55',
     color: 'hover:text-blue-400'
   }
 ];
