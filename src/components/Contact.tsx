@@ -107,7 +107,7 @@ const Contact: React.FC<ContactProps> = ({ theme }) => {
                       href="mailto:your.email@example.com"
                       className="text-text hover:text-primary transition-colors"
                     >
-                      your.email@example.com
+                      svv6@cornell.edu
                     </a>
                   </div>
                 </div>
