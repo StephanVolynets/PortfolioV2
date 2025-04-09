@@ -3,7 +3,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/73d5f701-8479-41d2-90a2-78a5976fbf38/deploy-status)](https://app.netlify.com/sites/stephan-volynets/deploys)
 
-A modern portfolio website showcasing both traditional web development skills and blockchain implementations. The site features a responsive design, smooth animations, and interactive Web3 components including a full-featured token swap interface powered by the 0x Protocol.
+> A modern portfolio website showcasing both traditional web development skills and blockchain implementations. The site features a responsive design, smooth animations, and interactive Web3 components including a full-featured token swap interface powered by the 0x Protocol and a Solana-based donation widget.
 
 
 <p>
@@ -60,9 +60,11 @@ A modern portfolio website showcasing both traditional web development skills an
 
 ### Blockchain/Web3
 - **0x Protocol API**: Decentralized exchange aggregator for best swap rates
+- **Solana Web3.js**: Core library for Solana blockchain interaction
+- **SPL Token**: Solana Program Library for token operations
 - **Web3 Providers**: Support for multiple wallet providers
 - **Ethereum/Base**: Smart contract interactions on Base network
-- **Solana Adapter**: Integration with Solana blockchain
+- **Solana Wallet Adapter**: Unified wallet connection interface for Solana
 
 ## Blockchain Components
 
@@ -78,15 +80,29 @@ The portfolio includes a fully-functional DEX interface that allows users to:
 
 The swap interface leverages the 0x Protocol API to aggregate liquidity from multiple DEXes, ensuring users get the best possible rates for their swaps.
 
+### Solana Donation Widget
+
+The portfolio features a comprehensive Solana-based donation widget that includes:
+
+- **Direct SOL Donations**: Send SOL directly to a specified recipient address
+- **QR Code Support**: Generate scannable QR codes for mobile wallet donations
+- **Transaction Priority**: Choose between low, medium, and high priority fees
+- **Message Attachment**: Include optional messages with donations using Solana's Memo program
+- **Real-time Fee Estimation**: Display estimated transaction fees before sending
+- **Transaction History**: View recent donation transactions with links to block explorer
+- **Network Statistics**: Show current Solana network stats including SOL price and slot
+- **Analytics Dashboard**: Track total donations, unique donors, and transaction counts
+- **USD Conversion**: Automatically convert SOL amounts to USD using CoinGecko API
+
+Future plans include USDC token support alongside native SOL donations.
+
 ### Wallet Connection
 
-The application includes a custom wallet selection modal that:
+The application includes multiple wallet connection systems:
 
-- Detects installed wallet browser extensions
-- Supports multiple wallet providers (MetaMask, Phantom, Coinbase Wallet)
-- Clearly displays connection status and connected wallet address
-- Enables disconnecting and switching between wallets
-- Handles connection errors gracefully
+- **Ethereum Wallet Selector**: Custom modal for connecting to MetaMask, Phantom, or Coinbase Wallet for Base network operations
+- **Solana Wallet Adapter**: Integration with the official Solana wallet adapter for SOL donations
+- **Multi-Chain Support**: Seamless switching between Ethereum-compatible and Solana-based features
 
 ## Installation
 
@@ -127,6 +143,7 @@ Access the development server at `http://localhost:5173`
 
 ## Project Structure
 
+
 ```
 PortfolioV2-1/
 ├── public/              # Static assets
@@ -136,6 +153,8 @@ PortfolioV2-1/
 │   │   │   ├── SwapInterface.tsx   # Main swap UI
 │   │   │   ├── TokenSelector.tsx   # Token selection modal
 │   │   │   └── SwapSettings.tsx    # Slippage settings
+│   │   ├── DonationWidget.tsx   # Solana donation component
+│   │   └── WalletProvider.tsx   # Wallet connection provider
 │   ├── lib/
 │   │   ├── swapService.ts   # 0x API integration
 │   │   └── tokens.ts        # Token definitions
@@ -150,7 +169,10 @@ PortfolioV2-1/
 ## External APIs
 
 - **0x Protocol API**: Used for token swaps (https://docs.0x.org/0x-swap-api/introduction)
+- **Solana Web3.js**: Core Solana blockchain interaction (https://docs.solana.com/developing/clients/javascript-api)
+- **CoinGecko API**: Used for cryptocurrency price data
 - **Base Network**: Ethereum L2 for blockchain transactions
+- **Solana RPC**: Network interaction for the donation widget
 
 ## License
 
