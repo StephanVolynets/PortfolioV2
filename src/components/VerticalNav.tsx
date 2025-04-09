@@ -41,18 +41,17 @@ const portfolioItems: NavItem[] = [
 const navigation: NavSection[] = [
   { name: 'Portfolio', items: portfolioItems, icon: <User className="h-4 w-4" /> },
   { 
-    name: 'Contact', 
-    items: [{ name: 'Get in Touch', href: '#contact', description: 'Send me a message', icon: <Mail className="h-4 w-4" /> }],
-    icon: <Mail className="h-4 w-4" />
-  },
-  { 
     name: 'Blockchain', 
     items: [
-      { name: 'Analytics', href: '#analytics', description: 'Blockchain metrics', icon: <BarChart className="h-4 w-4" /> },
       { name: 'Swap', href: '#swap', description: 'Token exchange', icon: <Repeat className="h-4 w-4" /> },
       { name: 'Support', href: '#donation', description: 'Buy me a coffee with SOL', icon: <Coffee className="h-4 w-4" /> }
     ],
     icon: <BarChart className="h-4 w-4" />
+  },
+  { 
+    name: 'Contact', 
+    items: [{ name: 'Get in Touch', href: '#contact', description: 'Send me a message', icon: <Mail className="h-4 w-4" /> }],
+    icon: <Mail className="h-4 w-4" />
   }
 ];
 

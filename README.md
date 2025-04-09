@@ -33,12 +33,14 @@
     - [Blockchain/Web3](#blockchainweb3)
   - [Blockchain Components](#blockchain-components)
     - [Token Swap Interface](#token-swap-interface)
+    - [Solana Donation Widget](#solana-donation-widget)
     - [Wallet Connection](#wallet-connection)
   - [Installation](#installation)
   - [Running Locally](#running-locally)
   - [Project Structure](#project-structure)
   - [External APIs](#external-apis)
   - [License](#license)
+- [Designed and developed with ❤️](#designed-and-developed-with-️)
 
 ## Features
 

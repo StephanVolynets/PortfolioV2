@@ -96,3 +96,21 @@ body {
         /* Adjust based on repeated content */
     }
 }
+
+
+/* Add this at the end of the file */
+
+iframe {
+    pointer-events: none !important;
+}
+
+
+/* This is the short-term solution mentioned in the GitHub issue */
+
+
+/* Ensure MetaMask popup has higher priority than our UI */
+
+.wallet-connect-button {
+    position: relative;
+    z-index: 9999 !important;
+}

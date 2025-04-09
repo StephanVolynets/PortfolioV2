@@ -11,6 +11,7 @@ import { ArrowUp } from 'lucide-react';
 import { WalletContextProvider } from './components/WalletProvider';
 import DonationWidget from './components/DonationWidget';
 import { Toaster } from 'sonner';
+import { SwapInterface } from './components/Swap/SwapInterface';
 // import Head from 'next/head';
 
 function App() {
@@ -90,16 +91,32 @@ function App() {
             <section id="projects">
               <Projects theme={theme} />
             </section>
-            <section id="contact">
-              <Contact theme={theme} />
+            <section id="swap" className="py-16 bg-background">
+              <div className="container mx-auto px-4">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-8 sm:mb-12 text-center text-primary">
+                  Swap Tokens
+                </h2>
+                <p className="text-center text-text max-w-2xl mx-auto mb-10">
+                  Try out a decentralized exchange interface powered by 0x Protocol. Connect your wallet to trade tokens on Base network with the best rates from multiple liquidity sources.
+                </p>
+                <div className="flex justify-center">
+                  <SwapInterface />
+                </div>
+              </div>
             </section>
             <section id="donation" className="py-8 sm:py-16">
               <div className="px-4 sm:px-6 max-w-md mx-auto">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-primary">
+                  Support My Work
+                </h2>
                 <DonationWidget 
                   recipientAddress="4NicjQQ4rpb6xy1zfuyGNgYzKs5jydvtnEctxpTNMWVX" 
                   theme={theme} 
                 />
               </div>
+            </section>
+            <section id="contact">
+              <Contact theme={theme} />
             </section>
           </main>
         </div>

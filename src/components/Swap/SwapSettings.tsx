@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Info } from 'lucide-react';
 
@@ -21,18 +21,45 @@ export function SwapSettings({
   deadline,
   onDeadlineChange
 }: SwapSettingsProps) {
-  const commonSlippageValues = [0.1, 0.5, 1.0];
+  const [customSlippage, setCustomSlippage] = useState<string>('');
+  const [customDeadline, setCustomDeadline] = useState<string>('');
+
+  const handleSlippageChange = (value: number) => {
+    setCustomSlippage('');
+    onSlippageChange(value);
+  };
+
+  const handleCustomSlippageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9.]/g, '');
+    setCustomSlippage(value);
+    
+    if (value && !isNaN(Number(value))) {
+      onSlippageChange(Number(value));
+    }
+  };
+
+  const handleDeadlineChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    setCustomDeadline(value);
+    
+    if (value && !isNaN(Number(value))) {
+      onDeadlineChange(Number(value));
+    }
+  };
+
+  // Common slippage presets
+  const slippagePresets = [0.1, 0.5, 1.0];
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 overflow-hidden">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm"
             onClick={onClose}
           />
 
@@ -41,7 +68,7 @@ export function SwapSettings({
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md bg-[#252832] rounded-xl shadow-xl border border-[#363A45]/30 z-50"
+            className="w-full max-w-md bg-[#252832] rounded-xl shadow-xl border border-[#363A45]/30 z-50 relative"
           >
             <div className="p-4">
               {/* Header */}
@@ -57,57 +84,63 @@ export function SwapSettings({
 
               {/* Slippage Tolerance */}
               <div className="mb-6">
-                <div className="flex items-center gap-2 mb-2">
-                  <h4 className="text-white font-medium">Slippage Tolerance</h4>
-                  <Info className="w-4 h-4 text-[#B2B5BE]" />
+                <div className="flex items-center mb-2">
+                  <h4 className="text-md font-medium text-white">Slippage Tolerance</h4>
+                  <Info className="w-4 h-4 ml-1 text-[#B2B5BE]" />
                 </div>
-                <div className="flex gap-2 mb-2">
-                  {commonSlippageValues.map((value) => (
+                <div className="flex items-center gap-2 mb-3">
+                  {slippagePresets.map((preset) => (
                     <button
-                      key={value}
-                      onClick={() => onSlippageChange(value)}
-                      className={`px-4 py-2 rounded-lg font-medium ${
-                        slippage === value
+                      key={preset}
+                      onClick={() => handleSlippageChange(preset)}
+                      className={`px-3 py-2 rounded-lg font-medium text-sm ${
+                        slippage === preset && customSlippage === ''
                           ? 'bg-[#85bb65] text-white'
                           : 'bg-[#1A1D24] text-[#B2B5BE] hover:bg-[#363A45]/20'
                       }`}
                     >
-                      {value}%
+                      {preset.toFixed(1)}%
                     </button>
                   ))}
                   <div className="relative flex-1">
                     <input
-                      type="number"
-                      value={slippage}
-                      onChange={(e) => onSlippageChange(parseFloat(e.target.value))}
-                      className="w-full px-4 py-2 bg-[#1A1D24] text-white rounded-lg outline-none"
-                      placeholder="Custom"
+                      type="text"
+                      value={customSlippage}
+                      onChange={handleCustomSlippageChange}
+                      placeholder={slippage.toString()}
+                      className="w-full bg-[#1A1D24] text-white px-3 py-2 rounded-lg outline-none focus:ring-2 focus:ring-[#85bb65]/20"
                     />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#B2B5BE]">%</span>
+                    <span className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[#B2B5BE]">
+                      %
+                    </span>
                   </div>
                 </div>
+                {slippage > 3 && (
+                  <p className="text-yellow-500 text-sm">
+                    Warning: High slippage tolerance. Your transaction may be frontrun.
+                  </p>
+                )}
               </div>
 
               {/* Transaction Deadline */}
               <div>
-                <div className="flex items-center gap-2 mb-2">
-                  <h4 className="text-white font-medium">Transaction Deadline</h4>
-                  <Info className="w-4 h-4 text-[#B2B5BE]" />
+                <div className="flex items-center mb-2">
+                  <h4 className="text-md font-medium text-white">Transaction Deadline</h4>
+                  <Info className="w-4 h-4 ml-1 text-[#B2B5BE]" />
                 </div>
-                <div className="relative">
+                <div className="flex items-center">
                   <input
-                    type="number"
-                    value={deadline}
-                    onChange={(e) => onDeadlineChange(parseInt(e.target.value))}
-                    className="w-full px-4 py-2 bg-[#1A1D24] text-white rounded-lg outline-none"
-                    placeholder="20"
+                    type="text"
+                    value={customDeadline || deadline.toString()}
+                    onChange={handleDeadlineChange}
+                    className="w-20 bg-[#1A1D24] text-white px-3 py-2 rounded-lg outline-none focus:ring-2 focus:ring-[#85bb65]/20 mr-2"
                   />
-                  <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[#B2B5BE]">minutes</span>
+                  <span className="text-[#B2B5BE]">minutes</span>
                 </div>
               </div>
             </div>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );

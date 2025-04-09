@@ -6,55 +6,55 @@ interface ProjectsProps {
   theme: string;
 }
 
-// Project data with lorem ipsum
+// Project data
 const projects = [
   {
-    title: 'Crypto Portfolio Tracker',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus.',
+    title: 'Silicore.io',
+    description: 'Developed as part of the "Build Better on Stellar: Smart Contract Challenge," Silicore is a platform that enables cryptocurrency traders to compare trusted exchanges, secure optimal rates, and trade efficiently. It provides real time data and insights, allowing users to make informed decisions by comparing various exchanges and their rates.',
     image: '/projects/crypto-portfolio.webp',
-    tags: ['React', 'Next.js', 'TypeScript'],
-    github: 'https://github.com/StephanVolynets',
-    live: '#'
+    tags: ['Blockchain', 'Nest.js', 'Typescript', 'Web Sockets'],
+    github: 'https://github.com/StephanVolynets/Silicore-front-end-local',
+    live: 'https://www.silicore.io/'
   },
   {
-    title: 'Decentralized Exchange',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus.',
+    title: 'Cornell Boxing Club - Event RSVP App',
+    description: 'A modern, responsive React application to manage event RSVPs with real time updates, a dynamic grid layout, smooth animations, and mobile friendly design. Seamless RSVP functionality is supported by a modular component architecture and efficient API communication.',
     image: '/projects/dex-platform.webp',
-    tags: ['Solana', 'React', 'Web3.js'],
-    github: 'https://github.com/StephanVolynets',
-    live: '#'
+    tags: ['MongoDB', 'Express.js', 'Restful Architecture'],
+    github: 'https://github.com/StephanVolynets/EVENT-RSVP-APP-MERN',
+    live: 'https://stephanvolynets.github.io/EVENT-RSVP-APP-MERN/'
   },
   {
-    title: 'AI Powered Task Manager',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus.',
+    title: 'Census Trends Dashboard (Cornell – CS 3300)',
+    description: 'Collaborated with a team of four to develop an interactive global visualization using Vanilla JS + D3.js by merging life expectancy data from the World Bank and population data from Our World In Data into a TopoJSON world map. Engineered data processing pipelines to reconcile disparate country names, align multiyear datasets, and compute dynamic color scales.',
     image: '/projects/ai-task-manager.webp',
-    tags: ['Python', 'React', 'FastAPI'],
-    github: 'https://github.com/StephanVolynets',
-    live: '#'
+    tags: ['D3.js', 'Data Processing', 'Interactivity', 'Collaboration'],
+    github: 'https://github.com/StephanVolynets/info3300p2',
+    live: 'https://stephanvolynets.github.io/info3300p2/'
   },
   {
-    title: 'Blockchain Data Visualizer',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus.',
+    title: 'RISC-V CPU Simulation',
+    description: 'Developed a simplified single cycle RISC-V CPU simulator in C, complete with fetch, decode, execute, memory, and writeback stages. The simulator reads 32-bit machine instructions from an input file, simulates register and memory operations, and outputs the final state of all registers.',
     image: '/projects/blockchain-viz.webp',
-    tags: ['D3.js', 'React', 'Web3'],
-    github: 'https://github.com/StephanVolynets',
-    live: '#'
+    tags: ['C', 'Hash tables', 'RISC-V', 'Bitwise Instruction Parsing'],
+    github: 'https://github.com',
+    live: 'https://example.com'
   },
   {
-    title: 'Secure Messaging dApp',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus.',
+    title: 'Huffman Compression Project (Cornell – CS 3410)',
+    description: 'Engineered a Huffman compression tool by implementing a custom, generic priority queue using a linked list with tailored comparator functions, enabling efficient insertion and O(1) dequeuing of minimum frequency nodes.',
     image: '/projects/secure-messaging.webp',
-    tags: ['React Native', 'IPFS', 'Ethereum'],
-    github: 'https://github.com/StephanVolynets',
-    live: '#'
+    tags: ['BitI/O', 'Abstract Data Types', 'Memory Management'],
+    github: 'https://github.com',
+    live: 'https://example.com'
   },
   {
-    title: 'Smart Home Automation Hub',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. Duis vulputate commodo lectus.',
+    title: 'Cinematic Showcase - Movie Database',
+    description: 'Dynamic content management app that features both a public facing interface for users to explore top ranked films across various genres, as well as a comprehensive admin panel for content management, secure by user authentication.',
     image: '/projects/smart-home.webp',
-    tags: ['IoT', 'Node.js', 'MQTT'],
-    github: 'https://github.com/StephanVolynets',
-    live: '#'
+    tags: ['PHP', 'SQLlite', 'Session Management', 'Security'],
+    github: 'https://github.com/StephanVolynets/MovieAdminPanel',
+    live: 'https://example.com'
   }
 ];
 
