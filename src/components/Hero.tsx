@@ -473,9 +473,9 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Code2 className="w-4 h-4 sm:w-5 sm:h-5" />
-              <span className="font-medium text-base sm:text-lg">View Projects</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+              <Code2 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+              <span className="font-medium text-base sm:text-lg text-white">View Projects</span>
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform text-white" />
             </motion.a>
 
             <motion.button
@@ -484,7 +484,7 @@ const Hero: React.FC<HeroProps> = ({ theme }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="font-medium text-base sm:text-lg">Make it Rain</span>
+              <span className="font-medium text-base sm:text-lg text-white">Make it Rain</span>
               <span className="text-xl sm:text-2xl">💸</span>
             </motion.button>
           </motion.div>
