@@ -19,7 +19,7 @@
 
 
  <p align="center">
-    <img src="https://github.com/user-attachments/assets/853661c2-9dd6-4ffb-b26b-70d431f01913" alt="Desktop Browser"  style="width:65% height=85%">
+    <img src="https://github.com/user-attachments/assets/853661c2-9dd6-4ffb-b26b-70d431f01913" alt="Desktop Browser"  style="width:50%" height="800">
      
  </p>
 
