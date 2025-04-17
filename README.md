@@ -7,7 +7,7 @@
 
 
 <p>
-   <img src="https://github.com/user-attachments/assets/d98bc0c5-108a-422c-9674-a9e0ad203038" alt="Desktop Browser" style="width:100% height="700">
+   <img src="https://github.com/user-attachments/assets/d98bc0c5-108a-422c-9674-a9e0ad203038" alt="Desktop Browser" style="width:100%" height="510">
         <br>
 
 </p>
