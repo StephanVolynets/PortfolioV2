@@ -1,65 +1,91 @@
-import React, { ReactNode, useRef, useEffect, useState } from 'react';
-import useScrollAnimation from './useScrollAnimation';
-import { cn } from '@/lib/utils';
+import React, { useEffect, useRef, useState } from 'react';
 
 interface AnimatedSectionProps {
-  children: ReactNode;
+  children: React.ReactNode;
   className?: string;
-  id?: string;
-  animation?: 'fadeInUp' | 'fadeInDown' | 'fadeInLeft' | 'fadeInRight' | 'zoomIn';
+  animation?: 'fadeIn' | 'fadeInUp' | 'fadeInDown' | 'fadeInLeft' | 'fadeInRight' | 'zoomIn' | 'slideIn';
   delay?: number;
+  duration?: number;
   threshold?: number;
-  stagger?: boolean;
+  id?: string;
 }
 
-/**
- * A component that animates its children when scrolled into view
- */
 const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   children,
-  className,
-  id,
-  animation = 'fadeInUp',
+  className = '',
+  animation = 'fadeIn',
   delay = 0,
+  duration = 800,
   threshold = 0.1,
-  stagger = false,
+  id,
 }) => {
-  const { ref, isInView } = useScrollAnimation({ threshold });
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
 
-  // Calculate delay class based on delay prop
-  const getDelayClass = () => {
-    if (delay <= 0) return '';
-    const delayStep = 100;
-    const delayClass = `delay-${Math.min(Math.round(delay / delayStep) * delayStep, 800)}`;
-    return delayClass;
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      {
+        threshold,
+        rootMargin: '0px 0px -100px 0px',
+      }
+    );
+
+    const currentRef = sectionRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [threshold]);
+
+  const getAnimationClass = () => {
+    if (!isVisible) return 'opacity-0';
+    
+    switch (animation) {
+      case 'fadeIn':
+        return 'animate-fadeIn';
+      case 'fadeInUp':
+        return 'animate-fadeInUp';
+      case 'fadeInDown':
+        return 'animate-fadeInDown';
+      case 'fadeInLeft':
+        return 'animate-fadeInLeft';
+      case 'fadeInRight':
+        return 'animate-fadeInRight';
+      case 'zoomIn':
+        return 'animate-zoomIn';
+      case 'slideIn':
+        return 'animate-slideIn';
+      default:
+        return 'animate-fadeIn';
+    }
   };
 
-  // Determine animation classes
-  const animationClass = `animate-${animation}`;
-  const delayClass = getDelayClass();
-  const staggerClass = stagger ? 'stagger-children' : '';
-  
-  // Combine all classes
-  const containerClasses = cn(
-    className,
-    staggerClass,
-    isInView ? 'revealed' : 'animate-hidden',
-  );
-  
-  // Apply animation classes to the section if not using stagger
-  const sectionClasses = !stagger && isInView 
-    ? cn(containerClasses, animationClass, delayClass) 
-    : containerClasses;
+  const style = {
+    animationDelay: `${delay}ms`,
+    animationDuration: `${duration}ms`,
+  };
 
   return (
-    <section
-      ref={ref as React.RefObject<HTMLElement>}
-      className={sectionClasses}
+    <div
       id={id}
+      ref={sectionRef}
+      className={`${className} ${getAnimationClass()}`}
+      style={style}
     >
       {children}
-    </section>
+    </div>
   );
 };
 
-export default AnimatedSection; 
+export default AnimatedSection;

@@ -1,36 +1,19 @@
-import React, { useRef } from "react";
-import { RoughNotation } from "react-rough-notation";
-import AnimatedSection from './AnimatedSection';
+import React from 'react';
+import { CV } from './CV';
 
 interface AboutProps {
   theme: string;
 }
 
 const About: React.FC<AboutProps> = ({ theme }) => {
-  const underlineColor = theme === "dark" ? "#86C232" : "#4a9d4a";
-  const highlightColor = theme === "dark" ? "rgba(134, 194, 50, 0.2)" : "rgba(74, 157, 74, 0.2)";
-
   return (
-    <AnimatedSection
-      id="about"
-      className={`py-24 ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}
-      animation="fadeInUp"
-      threshold={0.2}
-    >
+    <div className={`py-24 ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}>
       <div className="container mx-auto px-6">
         <h2 className="text-5xl font-bold mb-12 text-center text-primary">
-          <RoughNotation
-            type="underline"
-            color={underlineColor}
-            show={true}
-            strokeWidth={3}
-            animationDuration={1200}
-          >
-            About Me
-          </RoughNotation>
+          About Me
         </h2>
         
-        <AnimatedSection className="max-w-4xl mx-auto" animation="fadeInUp" delay={200}>
+        <div className="max-w-4xl mx-auto">
           <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
             Hello! I'm Stephan, a passionate <strong className="text-primary">Computer Science</strong> student at Cornell University with a focus on software development and blockchain technology.
           </p>
@@ -58,29 +41,18 @@ const About: React.FC<AboutProps> = ({ theme }) => {
             </pre>
           </div>
           
-          <AnimatedSection animation="fadeInRight" delay={400}>
-            <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
-              I'm particularly excited about the intersection of 
-              <RoughNotation
-                type="highlight"
-                color={highlightColor}
-                show={true}
-                animationDuration={1200}
-              >
-                <span className="text-primary"> blockchain technology </span>
-              </RoughNotation>
-              and everyday applications. My goal is to develop solutions that make decentralized systems more accessible and user-friendly.
-            </p>
-          </AnimatedSection>
+          <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
+            I'm particularly excited about the intersection of 
+            <span className="text-primary"> blockchain technology </span>
+            and everyday applications. My goal is to develop solutions that make decentralized systems more accessible and user-friendly.
+          </p>
           
-          <AnimatedSection animation="fadeInLeft" delay={600}>
-            <p className={`text-lg ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
-              When I'm not coding, you can find me exploring hiking trails, playing chess, or experimenting with new cooking recipes. I believe in a balanced approach to life and work, which helps me maintain creativity and focus in my projects.
-            </p>
-          </AnimatedSection>
-        </AnimatedSection>
+          <p className={`text-lg ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
+            When I'm not coding, you can find me exploring hiking trails, playing chess, or experimenting with new cooking recipes. I believe in a balanced approach to life and work, which helps me maintain creativity and focus in my projects.
+          </p>
+        </div>
       </div>
-    </AnimatedSection>
+    </div>
   );
 };
 
