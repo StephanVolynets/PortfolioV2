@@ -5,8 +5,8 @@ import { motion } from 'framer-motion';
 import { ArrowDownUp, Settings, Info, Loader2, X } from 'lucide-react';
 import { TokenSelector } from './TokenSelector';
 import { SwapSettings } from './SwapSettings';
-import { Token, baseTokens } from '@/lib/tokens';
-import { getPrice, getQuote, formatNumber } from '@/lib/swapService';
+import { Token, baseTokens } from '../../lib/tokens';
+import { getPrice, getQuote, formatNumber } from '../../lib/swapService';
 
 // Note: Using existing window.ethereum and window.phantom types.
 // TypeScript errors are suppressed with @ts-ignore where needed.
@@ -599,4 +599,4 @@ export function SwapInterface() {
       />
     </div>
   );
-} 
+}

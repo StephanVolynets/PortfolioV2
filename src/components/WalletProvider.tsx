@@ -38,9 +38,9 @@ export const WalletContextProvider: React.FC<WalletContextProviderProps> = ({ ch
 
   return (
     <ConnectionProvider endpoint={endpoint} config={{ commitment: 'confirmed' }}>
-      <WalletProvider wallets={wallets} autoConnect>
+      <WalletProvider wallets={wallets} autoConnect={false}>
         <WalletModalProvider>{children}</WalletModalProvider>
       </WalletProvider>
     </ConnectionProvider>
   );
-}; 
+};
