@@ -25,5 +25,10 @@ dist-ssr
 
 # Tempo
 node_modules/
+node_modules/
+**/routes/tempobook.dynamic.*
+**/routes/tempobook.storyboards.*
+
+# Tempo storyboards (ignored)
 **/tempobook/dynamic/
 **/tempobook/storyboards/

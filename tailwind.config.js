@@ -1,7 +1,8 @@
-/** @type {import('tailwindcss').Config} */
+// Ensure CommonJS export for Tailwind config
 module.exports = {
     darkMode: ["class"],
     content: [
+        './index.html',
         './pages/**/*.{ts,tsx}',
         './components/**/*.{ts,tsx}',
         './app/**/*.{ts,tsx}',
@@ -17,7 +18,6 @@ module.exports = {
         },
         extend: {
             colors: {
-                // Restored green and gray theme
                 background: '#222629',
                 text: '#ffffff',
                 primary: '#86C232',

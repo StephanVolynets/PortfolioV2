@@ -1,58 +1,37 @@
 import React from 'react';
-import { CV } from './CV';
 
 interface AboutProps {
-  theme: string;
+  theme?: 'light' | 'dark' | string;
 }
 
-const About: React.FC<AboutProps> = ({ theme }) => {
+const About: React.FC<AboutProps> = ({ theme = 'light' }) => {
   return (
-    <div className={`py-24 ${theme === "dark" ? "bg-highlight" : "bg-gray-100"}`}>
-      <div className="container mx-auto px-6">
-        <h2 className="text-5xl font-bold mb-12 text-center text-primary">
+    <section
+      id="about-section"
+      className={`w-full bg-background text-text transition-colors duration-300 ${theme}`}
+    >
+      <div className="container mx-auto px-4 py-12 sm:py-16">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary text-center mb-6 sm:mb-8">
           About Me
         </h2>
-        
-        <div className="max-w-4xl mx-auto">
-          <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
-            Hello! I'm Stephan, a passionate <strong className="text-primary">Computer Science</strong> student at Cornell University with a focus on software development and blockchain technology.
-          </p>
-          
-          <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
-            My journey in programming began when I was 14, tinkering with code to build interactive websites. This early fascination evolved into a deep interest in creating innovative solutions to real-world problems.
-          </p>
-          
-          <div className="bg-code p-6 rounded-lg mb-8 overflow-x-auto">
-            <pre className="text-primary">
-              <code>
-                {`const stephan = {
-  education: "Computer Science @ Cornell University",
-  interests: ["Web Development", "Blockchain", "AI", "Data Science"],
-  technologies: {
-    frontend: ["React", "TypeScript", "Next.js", "Tailwind CSS"],
-    backend: ["Node.js", "Express", "Python", "Java"],
-    databases: ["MongoDB", "SQL", "Firebase"],
-    blockchain: ["Solana", "Ethereum", "Smart Contracts"]
-  },
-  currentlyLearning: "Advanced Distributed Systems",
-  funFact: "I've written over 100,000 lines of code since I started programming!"
-};`}
-              </code>
-            </pre>
+        <p className="max-w-3xl mx-auto text-center leading-relaxed text-sm sm:text-base md:text-lg">
+          I’m a developer focused on building unique, stylish, and interactive experiences. This
+          section is a placeholder to resolve a missing import and will be enhanced with animations,
+          timelines, and visuals. If you already planned specific content for About, replace this
+          component or extend it.
+        </p>
+        <div className="mt-8 flex justify-center">
+          <div className="rounded-xl border border-[color:var(--border,#3a3f44)]/40 bg-[color:var(--card,#2b2f33)]/40 p-4 sm:p-6 shadow-md backdrop-blur-sm w-full max-w-3xl">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-sm sm:text-base">
+              <li className="p-3 rounded-lg bg-[color:var(--popover,#24282b)]/40">• Passion for delightful UI</li>
+              <li className="p-3 rounded-lg bg-[color:var(--popover,#24282b)]/40">• Modern animations & motion</li>
+              <li className="p-3 rounded-lg bg-[color:var(--popover,#24282b)]/40">• Performance-minded</li>
+              <li className="p-3 rounded-lg bg-[color:var(--popover,#24282b)]/40">• Accessibility aware</li>
+            </ul>
           </div>
-          
-          <p className={`text-lg mb-6 ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
-            I'm particularly excited about the intersection of 
-            <span className="text-primary"> blockchain technology </span>
-            and everyday applications. My goal is to develop solutions that make decentralized systems more accessible and user-friendly.
-          </p>
-          
-          <p className={`text-lg ${theme === "dark" ? "text-text" : "text-gray-800"}`}>
-            When I'm not coding, you can find me exploring hiking trails, playing chess, or experimenting with new cooking recipes. I believe in a balanced approach to life and work, which helps me maintain creativity and focus in my projects.
-          </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

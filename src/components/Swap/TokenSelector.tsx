@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X } from 'lucide-react';
-import Image from 'next/image';
 import { Token, baseTokens } from '@/lib/tokens';
 
 interface TokenSelectorProps {
@@ -115,4 +114,4 @@ export function TokenSelector({ isOpen, onClose, onSelect, selectedToken, chainI
       )}
     </AnimatePresence>
   );
-} 
+}

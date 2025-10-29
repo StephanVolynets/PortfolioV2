@@ -5,22 +5,19 @@ import path from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "./", // Use relative paths for assets
+  base: "./",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
   },
   server: {
-    port: 5172,
-    open: false, // Prevent automatic browser opening
+    port: 5173,
     host: true,
-    hmr: {
-      overlay: false, // Disable the HMR overlay to reduce overhead
-    },
-  },
-  build: {
-    sourcemap: true,
+    open: false,
+    hmr: { overlay: false },
+    // @ts-ignore
+    allowedHosts: process.env.TEMPO === "true" ? true : undefined,
   },
   define: {
     "process.env": {},
@@ -28,18 +25,15 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: [
-      "buffer", 
-      "process", 
-      "@solana/web3.js", 
+      "buffer",
+      "process",
+      "@solana/web3.js",
       "@solana/wallet-adapter-react",
       "framer-motion",
       "@tsparticles/engine",
-      "react-intersection-observer"
+      "react-intersection-observer",
     ],
-    esbuildOptions: {
-      define: {
-        global: "globalThis",
-      },
-    },
+    esbuildOptions: { define: { global: "globalThis" } },
   },
+  build: { sourcemap: true },
 });
