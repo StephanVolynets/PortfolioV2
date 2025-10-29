@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import Header from './components/Header';
 import VerticalNav from './components/VerticalNav';
 import Hero from './components/Hero';
@@ -9,22 +9,26 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import { ArrowUp } from 'lucide-react';
 import { WalletContextProvider } from './components/WalletProvider';
-import DonationWidget from './components/DonationWidget';
 import { Toaster } from 'sonner';
-import { SwapInterface } from './components/Swap/SwapInterface';
 import { ThemeProvider } from './context/ThemeContext';
+
+// Lazy load heavy components
+const DonationWidget = lazy(() => import('./components/DonationWidget'));
+const SwapInterface = lazy(() => import('./components/Swap/SwapInterface').then(module => ({ default: module.SwapInterface })));
 
 function App() {
   const [theme, setTheme] = useState(() => {
     // Check localStorage first
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      return savedTheme;
-    }
-    
-    // Check system preference
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      return 'dark';
+    if (typeof window !== 'undefined') {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        return savedTheme;
+      }
+      
+      // Check system preference
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        return 'dark';
+      }
     }
     
     return 'light';
@@ -58,7 +62,9 @@ function App() {
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', newTheme);
+    }
   };
 
   useEffect(() => {
@@ -101,7 +107,9 @@ function App() {
                     Try out a decentralized exchange interface powered by 0x Protocol. Connect your wallet to trade tokens on Base network with the best rates from multiple liquidity sources.
                   </p>
                   <div className="flex justify-center">
-                    <SwapInterface />
+                    <Suspense fallback={<div>Loading swap interface...</div>}>
+                      <SwapInterface />
+                    </Suspense>
                   </div>
                 </div>
               </section>
@@ -110,10 +118,12 @@ function App() {
                   <h2 className="text-3xl sm:text-4xl font-bold mb-8 text-center text-primary">
                     Support My Work
                   </h2>
-                  <DonationWidget 
-                    recipientAddress="4NicjQQ4rpb6xy1zfuyGNgYzKs5jydvtnEctxpTNMWVX" 
-                    theme={theme} 
-                  />
+                  <Suspense fallback={<div>Loading donation widget...</div>}>
+                    <DonationWidget 
+                      recipientAddress="4NicjQQ4rpb6xy1zfuyGNgYzKs5jydvtnEctxpTNMWVX" 
+                      theme={theme} 
+                    />
+                  </Suspense>
                 </div>
               </section>
               <section id="contact">
