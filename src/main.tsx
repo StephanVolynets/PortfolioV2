@@ -4,6 +4,7 @@ import App from './App'
 import './index.css'
 import { Buffer } from 'buffer'
 import './components/animations.css'
+import ErrorBoundary from './components/ErrorBoundary'
 
 // Polyfill for Buffer
 if (typeof window !== 'undefined') {
@@ -15,7 +16,9 @@ console.log('App starting...')
 try {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </React.StrictMode>,
   )
   
